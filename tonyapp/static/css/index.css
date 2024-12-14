@@ -1,0 +1,419 @@
+/* Ensure padding and borders are included in the width calculation */
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(40px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+      }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+
+*{
+  user-select:none;
+}
+
+
+
+
+.posts_index {
+  
+  display:flex;
+
+  margin:auto;
+  max-width: 1000px;
+  width: 100%;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation:slideUp 2s .8s ease;
+}
+
+/* Styling for post title */
+.h2_index {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+  text-transform:capitalize;
+}
+
+/* Description text */
+.p_index {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Fallback message when no picture is provided */
+.h5_index {
+  font-size: 1rem;
+  color: #777;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Image styling */
+img {
+  max-width: 100%;
+  max-height:700px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+
+
+/* Individual post styling */
+.post {
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post:last-child {
+  margin-bottom: 0;
+}
+
+/* Media Queries for responsive design */
+@media screen and (max-width: 768px) {
+  .h2_index {
+    font-size: 2rem;
+  }
+
+  .p_index {
+    font-size: 1rem;
+  }
+
+  .h5_index {
+    font-size: 0.9rem;
+  }
+
+  .posts_index {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .h2_index {
+    font-size: 1.5rem;
+  }
+
+  .p_index {
+    font-size: 0.95rem;
+  }
+
+  .h5_index {
+    font-size: 0.85rem;
+  }
+
+  .posts_index {
+    padding: 15px;
+  }
+
+  img {
+    border-radius: 8px;
+  }
+}
+.hr{
+  width:100%;
+  height:2px;
+  background-color:#fff;
+  box-shadow: 10px 0 10px gray;
+}
+
+
+
+/* General Reset and Body Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+
+/* Footer Form Styles */
+.footer-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-form-container h4 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.footer-form-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.footer-form-container input,
+.footer-form-container textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.footer-form-container input:focus,
+.footer-form-container textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.footer-form-container button {
+  padding: 12px 20px;
+  background-color: #37AFE1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.footer-form-container button:hover {
+  background-color: #2980b9;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .footer-form-container {
+      padding: 15px;
+  }
+  
+  .footer-form-container h4 {
+      font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-form-container {
+      padding: 10px;
+      width: 90%;
+  }
+  
+  .footer-form-container h4 {
+      font-size: 1rem;
+  }
+
+  .footer-form-container input,
+  .footer-form-container textarea {
+      font-size: 0.9rem;
+  }
+
+  .footer-form-container button {
+      font-size: 0.9rem;
+  }
+}
+/*####### hasta aqui el form de contacto*/ 
+        /* Footer */
+        footer {
+          background-color: #1f1f1f;
+          
+          
+          
+          color: white;
+          text-align: center;
+          width:100%;
+          height:300px;
+          font-family: Arial, sans-serif;
+          box-shadow: 0 0  5px blue;
+      }
+
+
+      footer{
+        box-shadow:0 0 2px gray;
+        margin:10px auto;
+    }
+    .terms-links{
+        width:350px;
+        display:flex;
+        margin:auto;
+        margin-bottom:5px;
+    }
+    footer .terms-links a {
+        color: white;
+        margin: 0 10px;
+        margin-bottom:10px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .social-icons{
+        width:200px;
+        height:50px;
+        
+        align-items:center;
+        justify-content:center;
+        display:flex;
+        margin:auto;
+    }
+    footer .terms-links a:hover {
+      
+        color: orangered; /* Red color on hover for terms links */
+        text-decoration: underline;
+    }
+
+    @media screen and (max-width:1432px){
+        footer{background-position: center;}
+      }
+      footer .social-icons a {
+          margin: 0 15px;
+          font-size: 24px;
+          color: white;
+          transition: color 0.3s ease;
+          
+      }
+      
+      footer .social-icons a:hover {
+          color: #e74c3c; /* Red color on hover */
+      }
+
+
+      
+
+
+      .post_fijos, .post_fijos2, .post_fijos3 {
+        max-width: 1000px;
+        width: 100%;
+        margin: 20px auto;
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color:#fff;
+        border-radius: 5px;
+    }
+
+   
+
+   
+
+    
+    /* Image styles to ensure they are always 100% width but maintain aspect ratio */
+    .image_post_fijos, .image_post_fijos2, .image_post_fijos3 {
+        width: 100%;
+        height: auto;
+        object-fit: contain; /* Ensures the entire image fits within its container */
+        display: block;
+        margin: 0 auto;
+    }
+
+    .image_post_fijos2 {
+      box-sizing: border-box;
+      
+      background: linear-gradient(45deg, rgba(255, 217, 0, 0.425), rgba(255, 105, 180, 0.5), rgba(0, 0, 0, 0.5));
+      
+
+    }
+
+    .image_post_fijos3 {
+      box-sizing: border-box;
+      
+      background: linear-gradient(45deg, RED 3%, BLACK);
+      
+
+    }
+    
+    
+    /* Heading styles */
+    .h2_post_fijos, .h2_post_fijos2, .h2_post_fijos3 {
+      text-transform:uppercase;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .h2_post_fijos3{
+      color:#333;
+      
+    }
+    
+    /* Paragraph styles */
+    .p_post_fijos, .p_post_fijos2, .p_post_fijos3 {
+      text-transform:capitalize;
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+  
+    
+    /* Responsive Design - Make sure text and content adapt on smaller screens */
+    @media screen and (max-width: 768px) {
+        .h2_post_fijos, .h2_post_fijos2, .h2_post_fijos3 {
+            font-size: 20px;
+        }
+    
+        .p_post_fijos, .p_post_fijos2, .p_post_fijos3 {
+            font-size: 14px;
+        }
+    }
+    
+    /* For very small screens like phones */
+    @media screen and (max-width: 480px) {
+        .h2_post_fijos, .h2_post_fijos2, .h2_post_fijos3 {
+            font-size: 18px;
+        }
+    
+        .p_post_fijos, .p_post_fijos2, .p_post_fijos3 {
+            font-size: 12px;
+        }
+    }

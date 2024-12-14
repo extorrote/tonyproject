@@ -1,0 +1,517 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Moran - Biography</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"><!-- ESTO ES PARA PODER QUE LOS SPCIAL ICON SE VEAN-->
+    <link rel="stylesheet" href="{%static '/css/fuentes.css'%}"><!--ESTO ES PARA CARGAR FUENTES -->
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            user-select:none;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #f4f4f4;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo img {
+            max-width: 350px;
+            height: auto;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 5px;
+            background-color: #e31c25;
+            
+        }
+
+        nav {
+            height:56px;
+            display: flex;
+            margin:auto;
+            
+            overflow:hidden;
+            border-radius:5px;
+        }
+       
+        @media screen and (max-width:820px){
+            nav{
+                overflow:visible;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            align-items:center;
+            background-color:  #e31c26b7;
+            gap: 30px;
+            list-style: none;
+            
+        }
+        @media screen and (max-width:970px){
+            nav ul{
+                gap:10px;
+            }
+        }
+        @media screen and (max-width:940px){
+            nav ul{
+               gap:0;
+            }
+        }
+
+        nav ul li {
+            margin: 0;
+            
+        }
+        
+        nav ul li a {
+            color: #f4f4f4;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #fff;
+            color:black;
+            transform: scale(1.05);
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #1f1f1f;
+            padding: 10px 0;
+            list-style: none;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            background-color:  #e31c26b7;
+            color:white;
+            font-size:1.5rem;
+        }
+        @media screen and (max-width:820px){
+            .has-submenu:hover .submenu{
+                background-color: #1f1f1f;
+                position:relative;
+                width:100%;
+            }
+        }
+
+        .submenu li a {
+            padding: 8px 20px;
+            color: #f4f4f4;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .submenu li a:hover {
+            background-color: #fff;
+        }
+
+        /* Content Styling */
+        .container {
+            margin-top: 200px;
+            padding: 20px;
+        }
+
+        h1, h4 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            margin-top:40px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            background-color: #e31c25;
+            color: #f4f4f4;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            white-space: nowrap; /* Ensures the text does not wrap */
+            overflow: hidden; /* Prevents text overflow */
+            text-overflow: ellipsis; /* Adds ellipsis when text is too long */
+            width: auto; /* Automatically adjust to content size */
+            min-width: 150px; /* Set a minimum width to avoid button collapse */
+        }
+
+        .contact-button:hover {
+            background-color: #b91c1d;
+            transform: translateY(-4px);
+        }
+
+        .phone-number {
+            color: #f4f4f4;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .phone-number a {
+            color: #e31c25;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .phone-number a:hover {
+            color: #b91c1d;
+        }
+
+        .footer-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-form-container input,
+        .footer-form-container textarea,
+        .footer-form-container button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            font-size: 1.1rem;
+            background-color: #333;
+            color: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-form-container button {
+            background-color: #e31c25;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-form-container button:hover {
+            background-color: #b91c1d;
+        }
+
+        .footer-form-container input:focus,
+        .footer-form-container textarea:focus {
+            outline: none;
+            border-color: #e31c25;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            nav ul {
+                gap: 0px;
+                
+            }
+            
+            .contact-buttons {
+                
+                gap: 20px;
+            }
+
+            .contact-button {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 820px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                
+            }
+
+            .hamburger {
+                display: flex;
+                
+                
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+                
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                background-color: #222;
+                padding: 20px 0;
+                
+            }
+
+            nav ul li a {
+                padding: 10px 20px;
+                width: 100%;
+                text-align: center;
+                
+            }
+
+            nav.open {
+                display: block;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .contact-buttons {
+                gap: 10px;
+                flex-direction: column;
+            }
+
+            .contact-button {
+                width: 100%;
+                font-size: 1rem;
+            }
+
+            .footer-form-container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            .footer-form-container input,
+            .footer-form-container textarea,
+            .footer-form-container button {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .footer-form-container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .footer-form-container input,
+            .footer-form-container textarea,
+            .footer-form-container button {
+                font-size: 0.95rem;
+            }
+        }
+
+
+        
+
+    </style>
+    <link rel="stylesheet" href="{% static 'css/biography.css' %}">
+
+
+    <!--  Meta Tags -->
+    
+    <meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="author" content="Tony Moran">
+    <meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+    <!-- Title -->
+    
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags (For social media previews) -->
+    <meta property="og:title" content="Tony Moran | Latin Rascals Official">
+    <meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta property="og:url" content="https://www.tonylatinrascal.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags (For Twitter preview) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+    <meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+    <!-- Additional Meta Tags for SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.tonylatinrascal.com">
+</head>
+
+<body>
+         <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li class="poner_margin_open_menu_mobile"><a href="{% url 'index'%}">HOME</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url  'product_list' %}">STORE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'schedule'%}">SCHEDULE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'contact'%}">CONTACT</a></li>
+                <li class="has-submenu"><a href="#">MORE</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'discography'%}">Discography</a></li>
+                        <li><a href="{%url 'music_section_list'%}">Music</a></li>
+                        <li><a href="{%url 'videos_list'%}">Videos</a></li>
+                        <li><a href="{%url 'gallery_list'%}">Gallery</a></li>
+                       
+        </nav>
+
+    </header>
+
+
+
+        
+        <div class="biography_container">
+        <section class="tony-moran-biography">
+            <div class="tony-moran-image-container">
+                <img src="{% static 'images/biografia.jpeg' %}" alt="Tony Moran" class="tony-moran-biography-image">
+            </div>
+            <div class="tony-moran-bio-text">
+                <p class="tony-moran-bio-intro">Tony Moran is a renowned American music producer, songwriter, and DJ, best known for his influential work in the dance music genre. His contributions have reshaped the landscape of contemporary dance and pop music, leaving an indelible mark on both the industry and the hearts of his listeners. With decades of experience and a passion for pushing the boundaries of sound, Tony remains a highly respected figure in the global music scene.</p>
+                
+                <h2 class="tony-moran-subheading">Early Life and Influences</h2>
+                <p class="tony-moran-bio-detail">Born in the vibrant city of New York on May 19, 1963, Tony Moran’s passion for music developed early on. Raised in a family deeply rooted in the arts, he was exposed to a wide variety of musical genres. His early influences came from both his Puerto Rican heritage and the dynamic urban music culture of New York City. From salsa and jazz to the burgeoning sounds of disco, the music that surrounded him fueled his creative aspirations.</p>
+                <p class="tony-moran-bio-detail">During his teenage years, Tony began to experiment with synthesizers, drum machines, and samplers, which would later become foundational elements of his production style. He gravitated toward electronic music, taking inspiration from the likes of Giorgio Moroder and David Bowie, whose adventurous approach to music inspired him to forge his own path in music production.</p>
+                
+                <h2 class="tony-moran-subheading">The Latin Rascals: Formation and Rise to Fame</h2>
+                <p class="tony-moran-bio-detail">The Latin Rascals, a highly influential Latin freestyle music production duo, were formed in the late 1980s. The duo, consisting of Carlos "Carlito" Rivas and Tony Moran, quickly became known for their unique sound that blended Latin rhythms with the emerging freestyle and dance music scenes. The Latin Rascals' music fused elements of hip-hop, electro, and pop, which set them apart in the competitive New York music scene.</p>
+                <p class="tony-moran-bio-detail">Both members of the duo, born in New York City with Puerto Rican roots, drew on their cultural heritage, creating a distinctive sound that merged traditional Latin music with the high-energy beats of the city’s burgeoning club culture. Tony Moran, with his skills in remixing and music production, teamed up with Carlos Rivas, who was deeply immersed in the Latin and freestyle music scenes. Together, they revolutionized the sound of the late 80s and early 90s freestyle movement.</p>
+                
+                <h3 class="tony-moran-subheading">Rise to Fame</h3>
+                <p class="tony-moran-bio-detail">The Latin Rascals gained widespread attention for their groundbreaking remixes and productions, which were regularly featured on prominent radio stations like WBLS and Hot 97. Their remix of “Let the Music Play” by Shannon became a defining moment in the freestyle and electro genres, showcasing their ability to transform a song into an anthem by incorporating energetic beats and Latin percussion.</p>
+                <p class="tony-moran-bio-detail">Their unique remixing techniques, characterized by catchy hooks, innovative use of electronic elements, and infectious rhythms, helped them become one of the most sought-after remix teams of the era. Some of their most notable works include remixes for artists like Stevie B, Exposé, and Sa-Fire. Their work was not only loved in New York but spread to the global dance music scene.</p>
+    
+                <h3 class="tony-moran-subheading">Notable Works and Influence</h3>
+                <p class="tony-moran-bio-detail">Though the Latin Rascals didn't release many albums under their own name, their influence on the dance music world cannot be overstated. Some of their most significant contributions to music include their remixes of:</p>
+                <ul class="tony-moran-bio-list">
+                    <li>"I Like It" by Toni Basil (1982) – A major remix hit.</li>
+                    <li>"Bailando" by Paradisio (1996) – A popular European release.</li>
+                    <li>"Boys Don’t Cry" by Exposé (1987) – One of their popular remixes.</li>
+                    <li>"C'mon and Dance" by Sa-Fire – A significant freestyle hit.</li>
+                </ul>
+                <p class="tony-moran-bio-detail">Their impact on the freestyle genre and dance music as a whole is undeniable. The Latin Rascals are credited with helping define the sound of freestyle music and played a key role in bringing Latin music to the mainstream in the United States. Their work not only influenced Latin music but also contributed to the evolution of pop and dance music in the 80s and 90s.</p>
+    
+                <h2 class="tony-moran-subheading">Continued Success: Tony Moran's Solo Career</h2>
+                <p class="tony-moran-bio-detail">Following the success of the Latin Rascals, Tony Moran continued to build on his career as a solo artist. His remixes for pop icons such as Mariah Carey, Janet Jackson, and Gloria Estefan took him to new heights. His remix of "If You Had My Love" by Jennifer Lopez became a global hit, and he continued to work with major artists, pushing the boundaries of dance and pop music.</p>
+                <p class="tony-moran-bio-detail">Tony Moran’s solo work, which combines his freestyle roots with contemporary dance sounds, has cemented his status as one of the top figures in dance music. His ability to blend different genres and infuse Latin influences into mainstream pop music has made him a key player in both the Latin music scene and the global music industry.</p>
+    
+                <h2 class="tony-moran-subheading">Legacy and Influence</h2>
+                <p class="tony-moran-bio-detail">Tony Moran, through both his solo career and his work as part of the Latin Rascals, has had a lasting influence on dance, pop, and Latin music. His innovative approach to remixing, along with his deep understanding of Latin rhythms, helped bring Latin freestyle music into the global spotlight, shaping the sound of both Latin music and mainstream American pop in the late '80s and early '90s.</p>
+                <p class="tony-moran-bio-detail">Today, Tony continues to be active in the music scene, performing worldwide and producing new tracks that blend his early influences with contemporary styles. His legacy as one of the pioneers of Latin freestyle and dance music remains solid, and his impact continues to inspire both new generations of music lovers and aspiring producers.</p>
+    
+                <h2 class="tony-moran-subheading">Recognition and Awards</h2>
+                <p class="tony-moran-bio-detail">Throughout his career, Tony has earned numerous awards and accolades, including several Billboard Dance Music Awards and a Grammy nomination. His remixes have topped charts worldwide, and his name has become synonymous with dancefloor hits. In addition to his accolades, Tony is revered by his peers in the music industry for his dedication to the craft and his contributions to the global soundscape of dance music.</p>
+                
+                <h2 class="tony-moran-subheading">Personal Life</h2>
+                <p class="tony-moran-bio-detail">Beyond his professional career, Tony is known for his philanthropy and support of various charitable causes. He has been an advocate for mental health awareness and often participates in charity events. Despite his fame, Tony remains grounded and deeply connected to his roots, constantly seeking to inspire the next generation of musicians and creators.</p>
+            </div>
+        </section>
+    </div>
+</div> <!-- CIERRE DE CONTAINER PRINCIPAL TONY-->
+            <!-- Footer -->
+    <footer>
+    
+        <div class="social-icons">
+            <a href="https://www.facebook.com/TonyMoran" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a  href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/djtonymoran" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+        
+        
+        <div class="contact-info">
+            <p><strong>Contact Us:</strong></p>
+            <p>Phone: <a href="tel:+16462691617">+1 646-269-1617</a></p>
+            <p>Email: <a href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+            <p><a>tonymoranmusic@gmail.com</a></p>
+        </div>
+    
+        <div class="terms-links">
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+            <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+        </div>
+    </footer>
+    <script>
+        // Toggle mobile navigation menu
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+    
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

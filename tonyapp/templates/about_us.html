@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    
+<style>
+    * {
+        user-select: none;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    /* ANIMACIONES */
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+@keyframes slideIn {
+from { transform: translateY(-100%); }
+to { transform: translateY(0); }
+}
+@keyframes slideUp {
+from { transform: translateY(100%); }
+to { transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+from {
+  opacity: 0;
+  transform: translateY(40px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        
+        
+        
+        
+        
+       
+        
+        
+    }
+    
+    /* Header */
+    header {
+        
+        background: url("{% static 'images/imagen_header.jpg' %}") no-repeat center center;
+        background-attachment:fixed;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+        padding: 20px 20px;
+        position: relative;
+        height: 70vh;
+        color: white;
+        text-align: center; /* Center text and logo */
+        animation:slideIn 1.5s .7s ease;
+    }
+
+ 
+
+    header .logo img {
+        max-width: 350px;
+        height: auto;
+        display:block;
+    }
+
+    /* Navigation Container */
+    /* Navigation Container */
+nav {
+position: absolute;  /* Position the nav at the bottom of the header */
+bottom: 1px;        /* Adjust the distance from the bottom */
+left: 50%;           /* Position the nav horizontally centered */
+transform: translateX(-50%); /* Center the nav perfectly */
+z-index: 100;
+text-align: center;
+width: 100%;
+background-color: black; /* Default to transparent */
+padding: 20px 0;
+border-radius: 10px;
+display: flex;
+justify-content: center;
+transition: all 0.3s ease;
+flex-direction: column; /* Use column layout */
+align-items: center; /* Center the nav items */
+
+
+}
+
+
+    nav.active {
+        background-color: rgba(0, 0, 0, 0.6); /* Background color when the menu is active */
+        width:80%;
+        
+    }
+    nav.active  .poner_margin_open_menu_mobile{
+        margin-top:15px;
+    }
+    nav.active .has-submenu{
+        background-color:  rgba(255, 0, 0, 0.644); /* Background color when the menu is active */
+        margin-top:20px;
+        
+    }
+    
+
+    /* Navigation Menu */
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        gap:0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .has-submenu{
+        text-wrap: nowrap;
+    }
+
+    nav ul li {
+        position: relative;
+        
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 20px;
+        padding: 15px 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        z-index:1000;
+    }
+
+    nav ul li:hover {
+        background:#D92525;
+        border-radius:5px;
+        padding:10px 0;
+        
+    }
+
+   
+
+    /* Submenu Styling */
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%; /* Position submenu below the parent item */
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6); /* Same as the menu's background color */
+        width: 200%; /* Submenu takes the same width as the parent */
+        border-radius: 5px;
+        z-index: 2; /* Ensure submenu appears above other items */
+    }
+    
+    .submenu li {
+        padding: 10px;
+    }
+
+    .submenu li a {
+        color: white;
+    }
+
+
+  
+
+    /* Hamburger Menu */
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+    }
+
+    .hamburger div {
+        background-color: white;
+        height: 3px;
+        width: 100%;
+    }
+    
+    
+
+
+    /* Responsive Design */
+    @media screen and (max-width: 892px) {
+        nav ul {
+            flex-direction: column;
+            gap: 0;
+            display: none; /* Hide the menu by default */
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .submenu{
+            width:100%;
+        }
+        nav.active ul {
+            display: flex !important; /* Force show the menu when active */
+        }
+
+        .hamburger {
+            display: flex; /* Show the hamburger icon */
+        }
+
+        /* Center the header content */
+        header {
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            padding: 10px;
+            background-attachment:scroll;
+            margin-bottom:-20px;
+        }
+        .body{
+            margin-top:0;
+        }
+
+        nav {
+            position: relative; /* Remove absolute positioning */
+            top: 0; /* Move nav below header */
+            margin-top: 20px; /* Space between header and nav */
+            background-color: transparent; /* Default to transparent */
+        }
+
+        nav.active {
+            background-color: rgba(0, 0, 0, 0.6); /* Change to the desired background when active */
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        header .logo img {
+            max-width: 150px;
+        }
+
+        
+    }
+
+    /* Show submenu on hover (for large screens) */
+    @media screen and (min-width: 769px) {
+        .has-submenu:hover .submenu {
+            display: block; /* Display the submenu when hovering over the parent menu item */
+        }
+    }
+
+    /* About Us Section */
+    .about-us {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 40px;
+    }
+
+    .about-us .image-container {
+        position: absolute;
+        left: 0;
+        top: 100vh;
+        left:20px;
+        width: 600px;
+        height: auto;
+        padding: 20px;
+        overflow:hidden;
+        
+    }
+    @media screen and (max-width:768px){
+        .about-us{
+           
+        }
+        {
+            
+        }
+        
+    }
+
+    .about-us .image-container img {
+        max-width: 100%;
+        border-radius:10px;
+        height: 600px;
+    }
+
+    @media screen and (max-width:768px){
+        
+        .about-us .image-container img{
+            height:370px;
+            
+        }
+    }
+
+    .about-us .text-container {
+        margin-left: 580px; /* Make room for the fixed image */
+        
+        max-width: 60%;
+        padding: 20px;
+    }
+
+
+
+    .about-us h1 {
+        text-align: left;
+    }
+
+    .about-us p {
+        text-align: justify;
+    }
+
+    
+    
+    /* Responsive Styles */
+    @media (max-width: 1071px) {
+        
+
+        .about-us {
+            flex-direction: column;
+            align-items: center;
+            padding:0;
+        }
+
+        .about-us .image-container {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .image-container img{
+            display:flex;
+            margin:auto;
+        }
+
+        .about-us .text-container {
+            margin-left: 0;
+            width: 100%;
+            padding: 20px;
+        }
+        .text-container{
+            min-width:380px;
+            width:100%;
+        }
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: #1f1f1f;
+        color: #fff;
+        padding: 40px 0;
+        text-align: center;
+        
+    }
+
+    footer p {
+        margin-bottom: 10px;
+    }
+
+    .social-icons {
+        margin-bottom: 20px;
+    }
+
+    .social-icons a {
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: #e31c25;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .contact-info a {
+        color: #e31c25;
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    .terms-links {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .terms-links a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .terms-links a:hover {
+        color: #e31c25;
+    }
+
+</style>
+
+<!--  Meta Tags -->
+    
+<meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta name="author" content="Tony Moran">
+<meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+<!-- Title -->
+<title>Tony Moran | Latin Rascals Official About Us</title>
+
+<!-- Favicon -->
+<link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+<!-- Open Graph Meta Tags (For social media previews) -->
+<meta property="og:title" content="Tony Moran | Latin Rascals Official">
+<meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+<meta property="og:url" content="https://www.tonylatinrascal.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card Meta Tags (For Twitter preview) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+<meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+<meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+<!-- Additional Meta Tags for SEO -->
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.tonylatinrascal.com">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="nav">
+    
+            <ul>               
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'biography'%}">BIOGRAPHY</a></li>
+                
+                <li class="poner_margin_open_menu_mobile"><a href="{% url 'product_list'  %}">STORE</a></li>
+                
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'index'%}">SCHEDULE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'contact'%}">CONTACT</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{% url 'index'  %}">HOME</a></li>
+                
+                <li class="has-submenu"><a href="#">MORE</a>
+                    <ul class="submenu">
+                        {% if user.username == 'tony'  or user.username == 'kiki'%}
+                        <li><a href="{% url 'create_post_index'%}">MAKE A POST</a></li>
+                        <li><a href="{% url 'upload_song'%}">POST A SONG</a></li>
+                        <li class="poner_margin_open_menu_mobile"><a href="{%url 'logout'%}">LOG OUT</a></li> 
+                        {%else%}
+                        <li class="poner_margin_open_menu_mobile"><a href="{%url 'login'%}">LOG IN</a></li>
+                        {%endif%}
+                    
+                        <li><a href="{% url 'discography'%}">DISCOGRAPHY</a></li>
+                        <li><a href="{%url 'music_section_list'%}">MUSIC</a></li>
+                        <li><a href="{%url 'videos_list'%}">VIDEOS</a></li>
+                        <li><a href="{%url 'gallery_list'%}">GALLERY</a></li>
+                        <li><a href="{%url 'faq'%}">FAQ's</a></li>
+                        
+                    </ul>
+                </li>  
+
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+        <section class="about-us">
+            <div class="image-container">
+                <img src="{% static '/images/discography.jpeg' %}" alt="Latin Rascals Discography">
+            </div>
+            <div class="text-container">
+                <h1>About The Latin Rascals</h1>
+                <p>Our journey began at a time when Latin music was still an underground phenomenon in the U.S. The mainstream music industry hadn’t fully embraced the genre yet, but we helped change that. We blended infectious Latin beats, vibrant melodies, and electronic production, creating a bridge between the Latin music world and mainstream pop. By doing so, we brought Latin music to the forefront of pop culture and earned recognition and respect in the process.</p>
+
+        <p>At the heart of the Latin Rascals is Tony Moran, a visionary producer, DJ, and musician whose passion for Latin rhythms and freestyle music shaped the core of our sound. With his creative genius, Tony helped us create tracks that became anthems for generations. Alongside him, we were a team of talented collaborators who shared the same vision and musical instincts. Together, we crafted an indelible musical identity that set us apart from others in the genre.</p>
+
+        <p>Our rise to prominence was in sync with the explosion of Latin Freestyle music in the 1980s, defined by energetic beats, catchy melodies, and emotional lyrics. While we were influenced by freestyle music pioneers, we injected our own signature sound, bringing elements of salsa, mambo, and merengue, while embracing the influence of electronic music and early hip-hop. Our ability to blend these diverse genres seamlessly created a fresh and exciting sound that resonated with listeners from all walks of life.</p>
+
+        <p>What set us apart was our innovative approach to production. While many artists were still relying on traditional studio setups, we embraced the emerging technologies of the 80s and 90s—synthesizers, drum machines, and samplers. We were one of the first to use these tools to merge Latin music with modern pop and dance, which was revolutionary at the time. This bold move helped us carve out a unique niche in the music industry.</p>
+
+        <p>Our influence extended beyond just music. Our visual style—bold, colorful fashion, and high-energy performances—made us icons in both the music and fashion worlds. We became a symbol of the fast-paced, vibrant lifestyle of New York City, and our impact spread beyond music into film, television, and the arts. Our music videos were as energetic and groundbreaking as our songs, catching the attention of audiences worldwide. We made our mark on music television, especially on channels like MTV, where our innovative style captivated audiences far beyond the Latin music community.</p>
+
+        <p>As the 90s progressed, we continued to evolve and adapt, experimenting with new sounds and pushing the boundaries of Latin and freestyle music. Our collaborations with both Latin artists and mainstream pop stars helped expand our reach. We played a pivotal role in bringing Latin rhythms into the pop music mainstream, paving the way for crossover successes from artists like Jennifer Lopez, Ricky Martin, and Shakira, who would later go on to global stardom.</p>
+
+        <p>Even as the 21st century approached, we stayed relevant in a rapidly changing musical landscape. While many of our peers faded, we kept creating new music, touring, and maintaining a loyal fanbase. Our ability to adapt to new trends while staying true to our Latin roots is one of the reasons we’ve stayed vital in the music industry for over three decades. We embraced digital tools and the internet, connecting with fans and distributing our music in new, exciting ways, allowing us to remain an enduring force in the industry.</p>
+
+        <p>Beyond commercial success, we’ve earned critical acclaim for our contributions to music. Our albums and singles have been nominated for and won numerous awards, including Latin music awards and Grammy nominations. Critics have praised our ability to blend traditional Latin sounds with contemporary styles, creating a fusion that’s both fresh and timeless. This balance of old and new is why our music continues to resonate with audiences today.</p>
+
+        <p>Our live performances are legendary—high-energy sets, infectious enthusiasm, and the ability to connect with audiences on a personal level. From intimate clubs in New York to international arenas, our concerts have been a celebration of Latin music and culture. These performances have become iconic in the Latin music world, with fans citing them as some of the best live shows they’ve ever seen.</p>
+
+        <p>Our music celebrates the rich diversity of Latin American countries, drawing inspiration from genres like salsa, merengue, bachata, and cumbia. We’ve always been proud of our heritage and used our platform to bring Latin music and culture to the global stage. This commitment to preserving and promoting Latin culture has made us beloved figures in the Latin music community, and our influence can be seen in the work of countless artists who followed in our footsteps.</p>
+
+        <p>Despite our success, we’ve never lost sight of the importance of community and collaboration. We’ve worked with up-and-coming artists, mentoring the next generation of Latin musicians and helping them find their own voice. Our willingness to collaborate and share our knowledge has made us respected figures in the music industry—not just as artists, but also as educators and mentors.</p>
+
+        <p>Our legacy is one of talent, creativity, and dedication to our craft. We’ve left an indelible mark on Latin music, and our contributions continue to shape contemporary sounds. As we keep creating new music, performing live, and staying connected with our fans, we show no signs of slowing down. Our impact on music, culture, and the global entertainment industry is undeniable, and our place in history is secure. We’re not just a group—we’re a movement, and our music will inspire generations to come.</p>
+    </div>
+</section>
+            </div>
+        </section>
+    </main>
+    
+
+    <!-- Footer -->
+    <footer>
+    
+        <div class="social-icons">
+            <a href="https://www.facebook.com/TonyMoran" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a  href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/djtonymoran" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+        
+        
+        <div class="contact-info">
+            <p><strong>Contact Us:</strong></p>
+            <p>Phone: <a href="tel:+16462691617">+1 646-269-1617</a></p>
+            <p>Email: <a href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+            <p><a>tonymoranmusic@gmail.com</a></p>
+        </div>
+    
+        <div class="terms-links">
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+            <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+        </div>
+    </footer>
+    
+
+    <!-- JavaScript for Hamburger Menu and Submenu Toggle -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        const submenuItems = document.querySelectorAll('.has-submenu > a');
+        const menuLinks = document.querySelectorAll('nav a'); // Select all menu links (main and submenu)
+
+        // Toggle the main menu visibility
+        hamburger.addEventListener('click', function () {
+            nav.classList.toggle('active'); // Toggle 'active' class to show/hide the menu
+        });
+
+        // Close the menu if clicked outside
+        window.addEventListener('click', function (e) {
+            if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                nav.classList.remove('active'); // Close the menu if clicked outside
+            }
+        });
+
+        // Toggle submenu visibility when a menu item is clicked (only on mobile)
+        submenuItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default link action
+                const submenu = item.nextElementSibling;
+                submenu.classList.toggle('show'); // Toggle the submenu
+            });
+        });
+
+        // Close the menu when any menu item is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                nav.classList.remove('active'); // Close the menu when any link is clicked
+            });
+        });
+    </script>
+</body>
+</html>

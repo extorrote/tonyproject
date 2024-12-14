@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create a New {{ product_type }}</title>
+
+    <!-- Load the CSS from the static directory -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/create_product.css' %}">
+</head>
+<body>
+    <!-- Header or Navigation Bar (Optional) -->
+    <header class="site-header">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'product_list' %}">Back Store</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Block -->
+    <main>
+        {% block content %}
+        <div class="form-container">
+            <h1>Create a New {{ product_type }}</h1>
+
+            <form method="POST" enctype="multipart/form-data" class="form">
+                {% csrf_token %}
+
+                <div class="form-fields">
+                    {{ form.as_p }}
+                </div>
+
+                <button type="submit" class="btn-submit">Create {{ product_type }}</button>
+            </form>
+
+            <br>
+           
+        </div>
+        {% endblock %}
+    </main>
+
+    <!-- Footer (Optional) -->
+    <footer class="site-footer">
+        <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

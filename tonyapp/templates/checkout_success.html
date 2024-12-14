@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Success</title>
+    <style>
+        *{
+            user-select: none;
+        }
+        body {
+            margin-top:50px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .container {
+            
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            height:100vh;
+           
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2d7bba;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .cart-items {
+            margin-bottom: 40px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .cart-item img {
+            max-width: 120px;
+            max-height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item h3 {
+            font-size: 1.5em;
+            margin: 0;
+            color: #333;
+        }
+
+        .cart-item p {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
+        .total-price {
+            text-align: center;
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #2d7bba;
+            margin-top: 20px;
+        }
+
+        .billing-info {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .billing-info p {
+            font-size: 1.1em;
+            margin: 8px 0;
+        }
+
+        .billing-info strong {
+            color: #555;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+        }
+
+        .button-list {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button-list li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        .button-list a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 1.2em;
+            background-color: #2d7bba;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-bottom:15px;
+        }
+
+        .button-list a:hover {
+            background-color: #1f5d7f;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cart-item img {
+                margin-bottom: 15px;
+            }
+
+            .cart-item-details {
+                padding-left: 0;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <!--  Meta Tags -->
+    
+    <meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="author" content="Tony Moran">
+    <meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+    <!-- Title -->
+    
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags (For social media previews) -->
+    <meta property="og:title" content="Tony Moran | Latin Rascals Official">
+    <meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta property="og:url" content="https://www.tonylatinrascal.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags (For Twitter preview) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+    <meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+    <!-- Additional Meta Tags for SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.tonylatinrascal.com">
+</head>
+<body>
+
+<div class="container">
+    <h1>Checkout Successful!</h1>
+
+    <h2>Your Order Summary</h2>
+
+    <div class="cart-items">
+        {% for item in cart_items %}
+            <div class="cart-item">
+                {% with product=item.get_product %}
+                    <div class="cart-item-img">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="cart-item-details">
+                        <h3>{{ product.title }} (x{{ item.quantity }})</h3>
+                        <p><strong>Description:</strong> {{ product.description }}</p>
+                        <p><strong>Price:</strong> ${{ item.total_price }}</p>
+                    </div>
+                {% endwith %}
+            </div>
+        {% empty %}
+            <p>No items in your cart.</p>
+        {% endfor %}
+    </div>
+
+    <div class="total-price">
+        <h3>Total: ${{ total_price }}</h3>
+    </div>
+
+    <div class="billing-info">
+        <h3>Billing Information:</h3>
+        <p><strong>Name:</strong> {{ user_info.first_name }} {{ user_info.last_name }}</p>
+        <p><strong>Email:</strong> {{ user_info.email }}</p>
+        <p><strong>Address:</strong> {{ user_info.address }}</p>
+    </div>
+
+    <div class="message">
+        <p>{{ message }}</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-list">
+        <ul>
+            <li class="poner_margin_open_menu_mobile">
+                <a href="{% url 'index' %}">HOME</a>
+            </li>
+            <li class="poner_margin_open_menu_mobile">
+                <a href="{% url 'product_list' %}">STORE</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

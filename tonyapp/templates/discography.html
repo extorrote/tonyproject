@@ -1,0 +1,356 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latin Rascals Discography</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"><!-- ESTO ES PARA PODER QUE LOS SPCIAL ICON SE VEAN-->
+    <style>
+        /* General Reset */
+        * {
+            user-select:none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px 0;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo img {
+            max-width: 350px;
+            height: auto;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 5px;
+            background-color: #e31c25;
+            border-radius: 5px;
+        }
+
+        nav {
+            height:50px;
+            display: flex;
+            margin:auto;
+            background-color:rgba(255, 0, 0, 0.311);
+            overflow:hidden;
+            border-radius:5px;
+
+        }
+        @media screen and (max-width:820px){
+            nav{
+                overflow:visible;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            align-items:center;
+            background-color: #e31c25;
+            gap: 30px;
+            list-style: none;
+            
+        }
+        @media screen and (max-width:970px){
+            nav ul{
+                gap:10px;
+            }
+        }
+        @media screen and (max-width:940px){
+            nav ul{
+               gap:0;
+            }
+        }
+
+        nav ul li {
+            margin: 0;
+            
+        }
+
+        nav ul li a {
+            color: #f4f4f4;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 7px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+
+        nav ul li a:hover {
+            color:black;
+            background-color: #fff;
+            transform: scale(1.05);
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #e31c25;
+            padding: 10px 0;
+            list-style: none;
+            margin-top: 5px;
+            border-radius: 5px;
+            margin-left:-50px;
+            
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            
+        }
+
+        .submenu li{
+            margin-top:5px;
+           
+        }
+        .submenu li a {
+            padding: 8px 70px;
+            color: #f4f4f4;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        @media screen and (max-width:768px){
+            
+            .submenu{
+                position:relative;
+                margin-left:0;
+                background-color: #1f1f1f;
+               
+            }
+            .submenu li{
+                margin-top:10px;
+            }
+            .submenu li a {
+                padding:8px 20px;
+                background-color: #1f1f1f;
+                margin-top:10px;
+
+            }
+
+        }
+
+        .submenu li a:hover {
+            background-color: #fff;
+        }
+
+        
+    </style>
+<link rel="stylesheet" href="{%static '/css/discography.css'%}">
+<link rel="stylesheet" href="{%static '/css/fuentes.css'%}"><!--ESTO ES PARA CARGAR FUENTES -->
+
+<!--  Meta Tags -->
+    
+<meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta name="author" content="Tony Moran">
+<meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+<!-- Title -->
+
+
+<!-- Favicon -->
+<link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+<!-- Open Graph Meta Tags (For social media previews) -->
+<meta property="og:title" content="Tony Moran | Latin Rascals Official">
+<meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+<meta property="og:url" content="https://www.tonylatinrascal.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card Meta Tags (For Twitter preview) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+<meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+<meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+<!-- Additional Meta Tags for SEO -->
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.tonylatinrascal.com">
+</head>
+<body>
+   <!-- Header Section -->
+   <header>
+    <div class="logo">
+        <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <nav id="nav">
+        <ul>
+            <li class="poner_margin_open_menu_mobile"><a href="{% url 'index'%}">HOME</a></li>
+            <li class="poner_margin_open_menu_mobile"><a href="{%url 'biography'%}">BIOGRAPHY</a></li>
+            <li class="poner_margin_open_menu_mobile"><a href="product_list">STORE</a></li>
+            <li class="poner_margin_open_menu_mobile"><a href="{%url 'schedule'%}">SCHEDULE</a></li>
+            <li class="poner_margin_open_menu_mobile"><a href="{%url 'contact'%}">CONTACT</a></li>
+            <li class="has-submenu"><a href="#">MORE</a>
+                <ul class="submenu">
+                   
+                    <li><a href="{%url 'music_section_list'%}">MUSIC</a></li>
+                    <li><a href="{%url 'videos_list'%}">VIDEOS</a></li>
+                    <li><a href="{%url 'gallery_list'%}">GALLERY</a></li>
+                    <li><a href="{%url 'faq'%}">FAQ's</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+    <!-- Main Content Section: Discography -->
+    <main>
+        <section class="discography-section">
+            <h1>Latino Rascals Discography</h1>
+            <img src="{% static 'images/footer_2.jpeg' %}" alt="Tony Moran" class="biography-image">
+            <p>Tony Moran & The Latino Rascals have been a prominent influence in the Latin music scene, blending vibrant rhythms with a powerful cultural presence. Their discography spans several decades, reflecting the evolution of Latin dance music and the group's commitment to innovation.</p>
+    
+            <!-- Discography Timeline -->
+            <h2>Discography Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>1990 - "The Latin Rascals"</h3>
+                    <p>This album was groundbreaking in the Latin music world, with its fusion of traditional Latin rhythms and modern dance beats.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>1995 - "Rascals In The House"</h3>
+                    <p>The second album from Tony Moran & The Latino Rascals, taking their sound to new heights with collaborations from major artists.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2000 - "The Latin Rascals: The Remix Collection"</h3>
+                    <p>With this release, the group introduced new sounds, exploring more experimental themes and incorporating electronic influences. This is a compilation album featuring remixes of their biggest tracks.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2005 - "The Best of The Latino Rascals"</h3>
+                    <p>This album marked a new era with a more refined production style, blending different genres and further pushing the boundaries of Latin dance music. It is a retrospective collection of their most popular hits.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2010 - Various Singles & Collaborations</h3>
+                    <p>By 2010, the group had solidified its place in Latin music, creating a legacy that resonated with newer generations. Though no full album was released, they continued to release singles and collaborate with other artists.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2015 - "The Latino Rascals Collection"</h3>
+                    <p>This album featured collaborations with some of the biggest names in the industry, showcasing a perfect blend of traditional and contemporary Latin sounds.</p>
+                </div>
+            </div>
+    
+            <h2>Key Albums</h2>
+            <div class="album-list">
+                <div class="album">
+                    <img src="{% static 'images/body_background.png' %}" alt="Album 1 Cover" class="album-cover">
+                    <h3>"The Latin Rascals" (1990)</h3>
+                    <p>Released: 1990</p>
+                    <p>This album was groundbreaking in the Latin music world, with its fusion of traditional Latin rhythms and modern dance beats.</p>
+                </div>
+                <div class="album">
+                    <img src="{% static 'images/body_background.png' %}" alt="Album 2 Cover" class="album-cover">
+                    <h3>"Rascals In The House" (1995)</h3>
+                    <p>Released: 1995</p>
+                    <p>The second album from Tony Moran & The Latino Rascals, taking their sound to new heights with collaborations from major artists.</p>
+                </div>
+                <div class="album">
+                    <img src="{% static 'images/body_background.png' %}" alt="Album 3 Cover" class="album-cover">
+                    <h3>"The Latin Rascals: The Remix Collection" (2000)</h3>
+                    <p>Released: 2000</p>
+                    <p>With this release, the group introduced new sounds, exploring more experimental themes and incorporating electronic influences.</p>
+                </div>
+                <div class="album">
+                    <img src="{% static 'images/body_background.png' %}" alt="Album 4 Cover" class="album-cover">
+                    <h3>"The Best of The Latino Rascals" (2005)</h3>
+                    <p>Released: 2005</p>
+                    <p>This album marked a new era with a more refined production style, blending different genres and further pushing the boundaries of Latin dance music.</p>
+                </div>
+                <div class="album">
+                    <img src="{% static 'images/body_background.png' %}" alt="Album 5 Cover" class="album-cover">
+                    <h3>"The Latino Rascals Collection" (2015)</h3>
+                    <p>Released: 2015</p>
+                    <p>This album features collaborations with some of the biggest names in the industry, showcasing a perfect blend of traditional and contemporary Latin sounds.</p>
+                </div>
+            </div>
+    
+           
+    
+            <!-- Band Evolution Section -->
+            <h2>Band Evolution</h2>
+            <p>The Latino Rascals have seen various phases in their career. From their early days in the 90s, where they were at the forefront of Latin dance music, to their more recent endeavors, they have consistently pushed the boundaries of their sound. The band has incorporated elements of salsa, electronic music, and pop, constantly evolving to stay relevant in the ever-changing music industry.</p>
+        </section>
+    </main>
+    
+
+    <!-- Footer -->
+    <footer>
+    
+        <div class="social-icons">
+            <a href="https://www.facebook.com/TonyMoran" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a  href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/djtonymoran" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+        
+        
+        <div class="contact-info">
+            <p><strong>Contact Us:</strong></p>
+            <p>Phone: <a href="tel:+16462691617">+1 646-269-1617</a></p>
+            <p>Email: <a href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+            <p><a>tonymoranmusic@gmail.com</a></p>
+        </div>
+    
+        <div class="terms-links">
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+            <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+        </div>
+    </footer>
+    <script>
+        // Toggle mobile navigation menu
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+    
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+    </script>
+
+
+</body>
+</html>

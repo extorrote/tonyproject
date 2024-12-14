@@ -1,0 +1,579 @@
+/* Basic Reset */
+* {
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+}
+a:visited {
+    color:orangered;
+}
+/* Body styles */
+body {
+    background-color: #f4f7fc;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Container for the entire body content */
+.body {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Section (Product Type Heading) */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 18px;
+    margin-top:20px;
+}
+
+/* Hamburger Menu */
+.menu-bar {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.menu-bar div {/*ESTAS SON LAS RAYITAS DEL MENU EN MOBILE*/
+    
+    width: 50px;
+    height: 5px;
+    background-color: orangered; /* orangered for the hamburger icon */
+    border-radius: 5px;
+}
+
+.menu-bar:active {
+    transform: rotate(3600deg); /* Rotate by 45 degrees */
+    transition: transform .4s ease; /* Smooth rotation effect */
+    user-select: none;
+}
+
+
+/* Mobile Menu */
+.nav-links {
+    width: auto;
+    display: flex;
+    margin: auto;
+    background-color:  #1f1f1f; /* Dark gray background for the menu */
+   
+    flex-direction: row;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+/* Media Query for Mobile Screens */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        max-width: 300px;
+        display: none;
+        background-color: transparent;
+    }
+    .nav-links a {
+        background-color: #2c3e50; /* Dark gray background for menu links */
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+}
+
+/* Show the menu on small screens */
+.nav-active {
+    display: flex;
+}
+
+/* Buttons */
+button {
+    background-color: transparent;
+    color: white;
+    padding: 35px 10px;
+    margin: auto;
+    text-wrap: nowrap;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto;
+    display: inline-block;
+}
+
+/* Button styles on hover and active */
+button:hover {
+    background-color: orangered; /* orangered background on hover */
+    transform: translateY(-2px);
+}
+
+button:active {
+
+    background-color: #e31c25; /* Darker orangered for active state */
+    transform: translateY(0);
+}
+
+/* Links Styling */
+a {
+    text-decoration: none;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Automatically adjust number of columns */
+    gap: 20px; /* Space between product cards */
+    margin-bottom: 40px;
+}
+
+.product {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styling */
+.product img {
+    max-width: 100%;
+    min-height: 300px;
+    max-height: 300px; /* Limit image height to 300px */
+    object-fit: cover; /* Maintain aspect ratio and cover the space within the container */
+    border-radius: 6px;
+    margin-bottom: 10px; /* Space between image and text */
+    cursor:pointer;
+}
+
+.product h3 {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.product p {
+    color: #7f8c8d;
+    margin-bottom: 8px;
+}
+
+.product .price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Form Button for Add to Cart */
+.product form button {
+    background-color: #27ae60;
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+.product form button:hover {
+    background-color: #2ecc71;
+}
+
+/* Navigation Bar (Product Types) */
+.product-types {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.product-types a {
+    width: 180px;
+}
+
+/* Layout Adjustments for Smaller Screens */
+@media (max-width: 768px) {
+    .product-types {
+        display: none; /* Hide the original product type buttons */
+    }
+
+    .menu-bar {
+        display: flex; /* Show hamburger icon on mobile */
+        align-items:center;
+        
+        width:80px;
+        height:30px;
+        margin-top:80px ;
+        margin-left:20px;
+        
+    }
+
+    .nav-links a {
+        background-color: #2c3e50;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .product {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .body {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .product h3 {
+        font-size: 14px;
+    }
+
+    .product p {
+        font-size: 12px;
+    }
+
+    .product .price {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+    
+}
+
+
+details {
+    font-size: 20px;
+    color: orangered;
+    cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Swiper container styling */
+.swiper-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative; /* Ensure buttons position correctly */
+}
+
+/* Hide the navigation buttons by default */
+.swiper-button-next, .swiper-button-prev {
+    display: none;
+}
+
+
+/* Submenu Styles */
+.has-submenu {
+    text-wrap: nowrap;
+    position: relative; /* Ensure submenu is positioned correctly */
+    
+}
+
+.has-submenu a {
+    
+    list-style: none;
+    text-decoration: none;
+    color:white;
+    font-weight: 600;
+}
+
+
+.submenu {
+    
+    display: none; /* Hide submenu by default */
+    position: absolute;
+    background-color: #2c3e50; /* Dark background for the submenu */
+    top: 100%; /* Position it directly below the parent */
+    left: 0;
+    width: 200px; /* Wider submenu */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensure it sits above other content */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth appearance */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(10px); /* Initially slightly off-screen */
+}
+
+/* Show submenu on hover (desktop) */
+.has-submenu:hover .submenu {
+    display: block; /* Show submenu when parent is hovered */
+    opacity: 1; /* Make submenu fully visible */
+    transform: translateY(0); /* Move it into position */
+}
+
+/* Submenu Items */
+.submenu li {
+    
+    text-align: center;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 12px 20px;
+    background-color: #2c3e50;
+    color: white;
+    list-style: none;
+    border-bottom: 1px solid #34495e; /* Border between items */
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+.submenu ul{
+    color:white;
+    list-style: none;
+    
+}
+.submenu li a {
+    
+    background-color: transparent;
+    color:white;
+}
+
+.submenu li:last-child {
+    border-bottom: none; /* Remove the border from the last item */
+}
+
+/* Submenu Item Hover */
+.submenu li:hover {
+    background-color: orangered; /* Orangered background on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Submenu Item Focus (for keyboard navigation) */
+.submenu li:focus {
+    outline: none; /* Remove the default outline */
+    background-color: #e74c3c; /* Focus state color */
+}
+
+/* Mobile View: Submenu toggle behavior */
+@media screen and (max-width: 768px) {
+    .submenu {
+        display:flex;
+        margin:auto;
+        position: static; /* Make submenu stack with the other items */
+        width: 80%;
+        opacity: 1;
+        transform: none;
+        margin-top:10px;
+        
+        
+        
+    }
+    .has-submenu li{
+        margin:5px;
+        
+        
+    }
+   
+    
+
+    .nav-active .has-submenu .submenu {
+        display: block; /* Show submenu when parent menu is active */
+        
+    }
+
+    .submenu li {
+        padding: 10px 50px;
+        background-color: #34495e; /* Darker background for mobile */
+    }
+    .submenu ul{
+        width:300px;
+    }
+
+    .submenu li:hover {
+        background-color: orangered; /* Orangered hover on mobile */
+    }
+}
+
+
+
+/*####### hasta aqui el form de contacto*/ 
+
+footer {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+    
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #e31c25;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    color: #e31c25;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.terms-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.terms-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.terms-links a:hover {
+    color: #e31c25;
+}
+
+
+       
+
+        .size-color-selection {
+            
+            width:200px;
+            display: flex;
+            
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+    
+        .form-group {
+            flex: 1 1 45%;
+            min-width: 10px;
+        }
+    
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+    
+        select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+    
+        /* Specific button styling */
+        .add-to-cart-button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+    
+        .add-to-cart-button:hover {
+            background-color: #45a049;
+        }
+    
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .form-group {
+                /* Stack form controls on smaller screens */
+            }
+    
+            .add-to-cart-button {
+                width: 100%;
+            }
+        }

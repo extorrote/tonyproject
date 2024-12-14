@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    {%comment%}  META TAGS. {%endcomment%}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <title>Log in</title>
+    <link rel="stylesheet" href="{%static 'css/login.css' %}">
+   
+</head>
+<body>
+    
+
+    
+
+    <div class="logo">
+        <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+    </div>
+    
+<section class="form__login">
+  <h2 class="form__title"><div><a href="{% url 'index' %}" style="color:white;">GO BACK</a></div></h2>
+  
+  <form class="form__form-login" method="POST"action="">
+      <div class="form__login-input-container">
+
+    {% csrf_token %}
+    <h2 class="identificate"> Identify </h2> 
+ <label class="label-login"for="username"> User : </label>
+  <input class="input-username-login"type="text" name="username"/>
+
+  <label class="label-login" for="password"> Password : </label>
+ <input  class="input-login" type="password" name="password"/>
+      
+ <div class="wrapper"><!--ESTO ES PARA SEPARAR LOS BOTONES-->
+  <div class="button-container">
+  <div class="button-container">
+      <button class="btn btn-2" type="submit">Log in</button>
+  </div>
+
+</div><!--ESTA CIERRA EL wrapper-->
+
+
+  
+  </div>
+  
+</form>
+
+</section>
+
+</body>
+</html>

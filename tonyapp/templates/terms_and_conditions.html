@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - Tony Moran |Latin Rascals</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    {% load static %}
+    <style>
+        * {
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* ANIMACIONES */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(40px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+      }
+}
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            
+            background-color: #8B0000;
+            background: linear-gradient(45deg, #ff8c00, #e52e71);
+            background: linear-gradient(60deg, #24c6dc, #514a9d);
+            background: linear-gradient(120deg, #f8cdda, #1e82e1);
+            background: linear-gradient(45deg, #ff4e50, #f9d423);
+            background: linear-gradient(135deg, #e52e71, #ff8c00);
+            background: linear-gradient(180deg, #F22727, black);
+           
+            
+            
+            
+           
+            
+            
+        }
+        
+        /* Header */
+        header {
+            
+            background: url("{% static 'images/imagen_header.jpg' %}") no-repeat center center;
+            background-attachment:fixed;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-position: center;
+            padding: 20px 20px;
+            position: relative;
+            height: 70vh;
+            color: white;
+            text-align: center; /* Center text and logo */
+            animation:slideIn 1.5s .7s ease;
+        }
+
+     
+
+        header .logo img {
+            max-width: 350px;
+            height: auto;
+            display:block;
+        }
+
+        /* Navigation Container */
+        /* Navigation Container */
+nav {
+    position: absolute;  /* Position the nav at the bottom of the header */
+    bottom: 1px;        /* Adjust the distance from the bottom */
+    left: 50%;           /* Position the nav horizontally centered */
+    transform: translateX(-50%); /* Center the nav perfectly */
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    background-color: black; /* Default to transparent */
+    padding: 20px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-direction: column; /* Use column layout */
+    align-items: center; /* Center the nav items */
+    
+    
+}
+
+
+        nav.active {
+            background-color: rgba(0, 0, 0, 0.6); /* Background color when the menu is active */
+            width:80%;
+            
+        }
+        nav.active  .poner_margin_open_menu_mobile{
+            margin-top:15px;
+        }
+        nav.active .has-submenu{
+            background-color:  rgba(255, 0, 0, 0.644); /* Background color when the menu is active */
+            margin-top:20px;
+            
+        }
+        
+
+        /* Navigation Menu */
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap:0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .has-submenu{
+            text-wrap: nowrap;
+        }
+
+        nav ul li {
+            position: relative;
+            
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            z-index:1000;
+        }
+
+        nav ul li:hover {
+            background:#D92525;
+            border-radius:5px;
+            padding:10px 0;
+            
+        }
+
+       
+
+        /* Submenu Styling */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position submenu below the parent item */
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Same as the menu's background color */
+            width: 200%; /* Submenu takes the same width as the parent */
+            border-radius: 5px;
+            z-index: 2; /* Ensure submenu appears above other items */
+        }
+        
+        .submenu li {
+            padding: 10px;
+        }
+
+        .submenu li a {
+            color: white;
+        }
+
+
+      
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+        }
+
+        .hamburger div {
+            background-color: white;
+            height: 3px;
+            width: 100%;
+        }
+        
+        
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 892px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                display: none; /* Hide the menu by default */
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            .submenu{
+                width:100%;
+            }
+            nav.active ul {
+                display: flex !important; /* Force show the menu when active */
+            }
+
+            .hamburger {
+                display: flex; /* Show the hamburger icon */
+            }
+
+            /* Center the header content */
+            header {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+                padding: 10px;
+                background-attachment:scroll;
+                margin-bottom:-20px;
+            }
+            .body{
+                margin-top:0;
+            }
+
+            nav {
+                position: relative; /* Remove absolute positioning */
+                top: 0; /* Move nav below header */
+                margin-top: 20px; /* Space between header and nav */
+                background-color: transparent; /* Default to transparent */
+            }
+
+            nav.active {
+                background-color: rgba(0, 0, 0, 0.6); /* Change to the desired background when active */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header .logo img {
+                max-width: 150px;
+            }
+
+            
+        }
+
+        /* Show submenu on hover (for large screens) */
+        @media screen and (min-width: 769px) {
+            .has-submenu:hover .submenu {
+                display: block; /* Display the submenu when hovering over the parent menu item */
+            }
+        }
+
+
+
+        /* Main Section */
+        .terms-section {
+            padding: 40px 20px;
+        }
+
+        .terms-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .terms-section h1 {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .terms-section h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #444;
+        }
+
+        .terms-section p {
+            font-size: 16px;
+            margin: 10px 0;
+            text-align: justify;
+        }
+
+        .terms-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .terms-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            
+
+            .terms-section .container {
+                padding: 20px;
+            }
+
+            .terms-section h1 {
+                font-size: 28px;
+            }
+
+            .terms-section h2 {
+                font-size: 20px;
+            }
+
+            .terms-section p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            
+
+            .terms-section h1 {
+                font-size: 24px;
+            }
+
+            .terms-section h2 {
+                font-size: 18px;
+            }
+
+            
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        .social-icons {
+            margin-bottom: 20px;
+        }
+        
+        .social-icons a {
+            color: #fff;
+            font-size: 2rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #e31c25;
+        }
+        
+        .contact-info p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info a {
+            color: #e31c25;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .terms-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .terms-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .terms-links a:hover {
+            color: #e31c25;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="nav">
+    
+            <ul>               
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'biography'%}">BIOGRAPHY</a></li>
+                
+                <li class="poner_margin_open_menu_mobile"><a href="{% url 'product_list'  %}">STORE</a></li>
+                
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'schedule'%}">SCHEDULE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'contact'%}">CONTACT</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'index'%}">HOME</a></li>
+                
+                <li class="has-submenu"><a href="#">MORE</a>
+                    <ul class="submenu">
+                        {% if user.username == 'tony'  or user.username == 'kiki'%}
+                        
+                        <li class="poner_margin_open_menu_mobile"><a href="{%url 'logout'%}">LOG OUT</a></li> 
+                        {%else%}
+                        <li class="poner_margin_open_menu_mobile"><a href="{%url 'login'%}">LOG IN</a></li>
+                        {%endif%}
+                    
+                        <li><a href="{% url 'discography'%}">DISCOGRAPHY</a></li>
+                        <li><a href="{%url 'music_section_list'%}">MUSIC</a></li>
+                        <li><a href="{%url 'videos_list'%}">VIDEOS</a></li>
+                        <li><a href="{%url 'gallery_list'%}">GALLERY</a></li>
+                        <li><a href="{%url 'faq'%}">FAQ's</a></li>
+                        
+                    </ul>
+                </li>  
+             
+            </ul>
+           
+        </nav>
+    </header>
+
+    <main>
+        <section class="terms-section">
+            <div class="container">
+                <h1>Terms and Conditions</h1>
+
+                <p>Welcome to the official Latin Rascals website. By accessing and using our website, you agree to comply with the following terms and conditions. Please read them carefully.</p>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>By using our website, you agree to these terms of use. If you do not agree to these terms, please do not use the site.</p>
+
+                <h2>2. Use of Content</h2>
+                <p>All content on the site, including text, images, videos, and logos, is the property of the Latin Rascals and is protected by copyright laws. You may not reproduce, distribute, or modify any content from this site without prior written consent.</p>
+
+                <h2>3. Privacy Policy</h2>
+                <p>Your privacy is important to us. Our privacy policy outlines how we collect and use your personal information. Please review it on the Privacy Policy page.</p>
+
+                <h2>4. User Conduct</h2>
+                <p>Users of the website agree not to use the site for any unlawful purpose or to engage in activities that could damage, disable, or overburden the website.</p>
+
+                <h2>5. Limitation of Liability</h2>
+                <p>We do not guarantee that the website will be error-free, and we are not responsible for any damages that may arise from using the site, including indirect, incidental, or consequential damages.</p>
+
+                <h2>6. Modifications</h2>
+                <p>We reserve the right to modify, update, or remove any part of these terms at any time. Any changes will be effective immediately upon posting on the website.</p>
+
+                <h2>7. Governing Law</h2>
+                <p>These terms are governed by and construed in accordance with the laws of the state where the Latin Rascals are based. Any disputes will be resolved in the appropriate courts of that jurisdiction.</p>
+
+               
+                <p>If you have any questions about these terms, please feel free to contact us. </p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- PARA QUE ESTOS SE VEAN DEBO COPIAR ESTO EN HEAD <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">-->
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com/TonyMoran" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a  href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/djtonymoran" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+        
+        
+        <div class="contact-info">
+            <p><strong>Contact Us:</strong></p>
+            <p>Phone: <a href="tel:+16462691617">+1 646-269-1617</a></p>
+            <p>Email: <a href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+            <p><a>tonymoranmusic@gmail.com</a></p>
+        </div>
+    
+        <div class="terms-links">
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+            <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+        </div>
+    </footer>
+    
+    
+    
+    
+        <!-- JavaScript for Hamburger Menu and Submenu Toggle -->
+        <script>
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+            const submenuItems = document.querySelectorAll('.has-submenu > a');
+            const menuLinks = document.querySelectorAll('nav a'); // Select all menu links (main and submenu)
+    
+            // Toggle the main menu visibility
+            hamburger.addEventListener('click', function () {
+                nav.classList.toggle('active'); // Toggle 'active' class to show/hide the menu
+            });
+    
+            // Close the menu if clicked outside
+            window.addEventListener('click', function (e) {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    nav.classList.remove('active'); // Close the menu if clicked outside
+                }
+            });
+    
+            // Toggle submenu visibility when a menu item is clicked (only on mobile)
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default link action
+                    const submenu = item.nextElementSibling;
+                    submenu.classList.toggle('show'); // Toggle the submenu
+                });
+            });
+    
+            // Close the menu when any menu item is clicked
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    nav.classList.remove('active'); // Close the menu when any link is clicked
+                });
+            });
+        </script>
+
+
+</body>
+</html>

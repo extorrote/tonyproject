@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+
+    <!-- Flatpickr styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Custom styles -->
+    <style>
+        *{
+            user-select: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #4CAF50;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form p {
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        form input,
+        form select,
+        form textarea,
+        form button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        form input[type="file"] {
+            padding: 5px;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            background-color:#48e;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 8px 20px;
+           
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: blue;
+        }
+
+        /* Center the Back to Schedule button */
+        .back-button-container {
+            text-align: center; /* Center the link */
+            margin-bottom: 30px; /* Add space below the button */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            form {
+                padding: 15px;
+                width: 90%;
+            }
+
+            form input,
+            form select,
+            form textarea,
+            form button {
+                font-size: 14px;
+            }
+
+            a {
+                font-size: 14px;
+                padding: 6px 15px;
+            }
+        }
+    </style>
+
+    <!-- Include flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+    
+    <!-- Center the Back to Schedule button -->
+    <div class="back-button-container">
+        <a href="{% url 'schedule' %}">Back to Schedule</a>
+    </div>
+    
+    <h1>Create Event (Schedule)</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Event </button>
+    </form>
+
+    <script>
+        // Initialize flatpickr on the time input
+        flatpickr('.timepicker', {
+            enableTime: true,    // Enable time selection
+            noCalendar: true,    // Disable the calendar view (since we only need time)
+            dateFormat: "H:i",   // Use 24-hour time format (you can change it to "h:i K" for 12-hour format)
+        });
+    </script>
+</body>
+</html>

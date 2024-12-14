@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/estilos_creaciones_y_edicion.css' %}">
+    <title>Crear Renta</title>
+    
+</head>
+<body>
+    <h1>Crear Propiedad de Renta</h1>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.colonia.id_for_label }}">Colonia:</label>
+            {{ form.colonia }}
+        </div>
+        <div>
+            <label for="{{ form.precio.id_for_label }}">Precio:</label>
+            {{ form.precio }}
+        </div>
+        <div>
+            <label for="{{ form.habitaciones.id_for_label }}">Habitaciones:</label>
+            {{ form.habitaciones }}
+        </div>
+        <div>
+            <label for="{{ form.baños.id_for_label }}">Baños:</label>
+            {{ form.baños }}
+        </div>
+
+        <div>
+            <label for="{{ form.cocina.id_for_label }}">{{ form.cocina.label }} Cocina</label>
+            {{ form.cocina }}
+            <div class="error">{{ form.cocina.errors }}</div>
+        </div>
+
+        <div>
+            <label for="{{ form.jardin.id_for_label }}">{{ form.jardin.label }} Jardin</label>
+            {{ form.jardin }}
+            <div class="error">{{ form.jardin.errors }}</div>
+        </div>
+
+        <div>
+            <label for="{{ form.comedor.id_for_label }}">{{ form.comedor.label }} Comedor</label>
+            {{ form.comedor }}
+            <div class="error">{{ form.comedor.errors }}</div>
+        </div>
+
+        <div>
+            <label for="{{ form.balcon.id_for_label }}">{{ form.balcon.label }} Balcon</label>
+            {{ form.balcon }}
+            <div class="error">{{ form.balcon.errors }}</div>
+        </div>
+
+        <div>
+            <label for="{{ form.cuarto_de_servicio.id_for_label }}">Cuarto de Servicio:</label>
+            {{ form.cuarto_de_servicio }}
+        </div>
+        <div>
+            <label for="{{ form.sala.id_for_label }}">Sala:</label>
+            {{ form.sala }}
+        </div>
+        <div>
+            <label for="{{ form.tipo_de_propiedad.id_for_label }}">Tipo de Propiedad:</label>
+            {{ form.tipo_de_propiedad }}
+        </div>
+        <div>
+            <label for="{{ form.numero_de_piso.id_for_label }}">Número de Piso:</label>
+            {{ form.numero_de_piso }}
+        </div>
+
+        <div>
+            <label for="{{ form.vista_primaria.id_for_label }}">Vista Primaria:</label>
+            {{ form.vista_primaria }}
+        </div>
+        <div>
+            <label for="{{ form.vista_secundaria.id_for_label }}">Vista Secundaria:</label>
+            {{ form.vista_secundaria }}
+        </div>
+        <div>
+            <label for="{{ form.amoblado.id_for_label }}">Amueblado:</label>
+            {{ form.amoblado }}
+        </div>
+        <div>
+            <label for="{{ form.elevador.id_for_label }}">Elevador:</label>
+            {{ form.elevador }}
+        </div>
+        <div>
+            <label for="{{ form.rooftop.id_for_label }}">Rooftop:</label>
+            {{ form.rooftop }}
+        </div>
+        <div>
+            <label for="{{ form.gym.id_for_label }}">Gym:</label>
+            {{ form.gym }}
+        </div>
+        <div>
+            <label for="{{ form.estasionamiento.id_for_label }}">Estacionamiento:</label>
+            {{ form.estasionamiento }}
+        </div>
+        <div>
+            <label for="{{ form.electrodomesticos_y_muebles_en_general.id_for_label }}">Electrodomésticos y Muebles en General:</label>
+            {{ form.electrodomesticos_y_muebles_en_general }}
+        </div>
+        <div>
+            <label for="{{ form.condiciones_de_la_propiedad.id_for_label }}">Condiciones de la Propiedad:</label>
+            {{ form.condiciones_de_la_propiedad }}
+        </div>
+        <div>
+            <label for="{{ form.tipo_de_electricidad.id_for_label }}">Tipo de Electricidad:</label>
+            {{ form.tipo_de_electricidad }}
+        </div>
+        <div>
+            <label for="{{ form.medidas_de_la_propiedad.id_for_label }}">Medidas de la Propiedad:</label>
+            {{ form.medidas_de_la_propiedad }}
+        </div>
+        <div>
+            <label for="{{ form.requisitos.id_for_label }}">Requisitos:</label>
+            {{ form.requisitos }}
+        </div>
+        <div>
+            <label for="{{ form.duracion_contrato.id_for_label }}">Duración del Contrato:</label>
+            {{ form.duracion_contrato }}
+        </div>
+        <div>
+            <label for="{{ form.deposito.id_for_label }}">Depósito:</label>
+            {{ form.deposito }}
+        </div>
+        <div>
+            <label for="{{ form.areas_comunes.id_for_label }}">Áreas Comunes:</label>
+            {{ form.areas_comunes }}
+        </div>
+        <div>
+            <label for="{{ form.piscina.id_for_label }}">Alberca:</label>
+            {{ form.piscina }}
+        </div>
+        <div>
+            <label for="{{ form.pet_friendly.id_for_label }}">Pet Friendly:</label>
+            {{ form.pet_friendly }}
+        </div>
+        <div>
+            <label for="{{ form.tipo_tipo_de_estufa.id_for_label }}">Tipo de Estufa:</label>
+            {{ form.tipo_tipo_de_estufa }}
+        </div>
+        <div>
+            <label for="{{ form.aire_acondicionado.id_for_label }}">Aire Acondicionado:</label>
+            {{ form.aire_acondicionado }}
+        </div>
+        <div>
+            <label for="{{ form.calentador_de_agua.id_for_label }}">Calentador de Agua:</label>
+            {{ form.calentador_de_agua }}
+        </div>
+        <div>
+            <label for="{{ form.pago_de_mantenimiento.id_for_label }}">Pago de Mantenimiento:</label>
+            {{ form.pago_de_mantenimiento }}
+        </div>
+        <div>
+            <label for="{{ form.que_incluye_el_pago_de_mantenimiento.id_for_label }}">¿Qué Incluye el Pago de Mantenimiento?</label>
+            {{ form.que_incluye_el_pago_de_mantenimiento }}
+        </div>
+        <div>
+            <label for="{{ form.informacion_extra.id_for_label }}">Información Extra:</label>
+            {{ form.informacion_extra }}
+        </div>
+        <div>
+            <label for="{{ form.direccion_exacta.id_for_label }}">Dirección Exacta:</label>
+            {{ form.direccion_exacta }}
+        </div>
+        <div>
+            <label for="{{ form.imagen1.id_for_label }}">Imagen 1:</label>
+            {{ form.imagen1 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen2.id_for_label }}">Imagen 2:</label>
+            {{ form.imagen2 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen3.id_for_label }}">Imagen 3:</label>
+            {{ form.imagen3 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen4.id_for_label }}">Imagen 4:</label>
+            {{ form.imagen4 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen5.id_for_label }}">Imagen 5:</label>
+            {{ form.imagen5 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen6.id_for_label }}">Imagen 6:</label>
+            {{ form.imagen6 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen7.id_for_label }}">Imagen 7:</label>
+            {{ form.imagen7 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen8.id_for_label }}">Imagen 8:</label>
+            {{ form.imagen8 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen9.id_for_label }}">Imagen 9:</label>
+            {{ form.imagen9 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen10.id_for_label }}">Imagen 10:</label>
+            {{ form.imagen10 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen11.id_for_label }}">Imagen 11:</label>
+            {{ form.imagen11 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen12.id_for_label }}">Imagen 12:</label>
+            {{ form.imagen12 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen13.id_for_label }}">Imagen 13:</label>
+            {{ form.imagen13 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen14.id_for_label }}">Imagen 14:</label>
+            {{ form.imagen14 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen15.id_for_label }}">Imagen 15:</label>
+            {{ form.imagen15 }}
+        </div>
+        <div>
+            <label for="{{ form.imagen16.id_for_label }}">Imagen 16:</label>
+            {{ form.imagen16 }}
+        </div>
+        <div>
+            <label for="{{ form.youtube_link.id_for_label }}">Link de YouTube (Iframe):</label>
+            {{ form.youtube_link }}
+        </div>
+        <div>
+            <label for="{{ form.link_de_google_maps.id_for_label }}">Link de Google Maps (Iframe):</label>
+            {{ form.link_de_google_maps }}
+        </div>
+        <div>
+            <label for="{{ form.agente.id_for_label }}">Agente:</label>
+            {{ form.agente }}
+        </div>
+        <button type="submit">Crear Renta</button>
+        <a href="{% url 'home' %}">Volver al inicio</a>
+    </form>
+
+    
+</body>
+</html>

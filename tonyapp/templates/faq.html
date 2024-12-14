@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latin Rascals FAQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"><!-- ESTO ES PARA PODER QUE LOS SPCIAL ICON SE VEAN-->
+    <style>
+        /* General Reset */
+        * {
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #f4f4f4;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo img {
+            max-width: 350px;
+            height: auto;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 5px;
+            background-color: #e31c25;
+            
+        }
+
+        nav {
+            height:50px;
+            display: flex;
+            margin:auto;
+            background-color:rgba(255, 0, 0, 0.311);
+            overflow:hidden;
+            border-radius:5px;
+
+        }
+        @media screen and (max-width:820px){
+            nav{
+                overflow:visible;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            align-items:center;
+            background-color: #e31c25;
+            gap: 30px;
+            list-style: none;
+            
+        }
+        @media screen and (max-width:970px){
+            nav ul{
+                gap:10px;
+            }
+        }
+        @media screen and (max-width:940px){
+            nav ul{
+               gap:0;
+            }
+        }
+
+        nav ul li {
+            margin: 0;
+            
+        }
+        
+        nav ul li a {
+            color: #f4f4f4;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #fff;
+            color:black;
+            transform: scale(1.05);
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #1f1f1f;
+            padding: 10px 0;
+            list-style: none;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            background-color: red;
+            color:white;
+            font-size:1.5rem;
+        }
+        @media screen and (max-width:820px){
+            .has-submenu:hover .submenu{
+                background-color: #1f1f1f;
+                position:relative;
+            }
+        }
+
+        .submenu li a {
+            padding: 8px 20px;
+            color: #f4f4f4;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .submenu li a:hover {
+            background-color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            nav ul {
+                gap: 0px;
+                
+            }
+        }
+
+        @media (max-width: 820px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                
+            }
+
+            .hamburger {
+                display: flex;
+                
+                
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+                
+                
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                background-color: #222;
+                padding: 20px 0;
+                
+                
+            }
+
+            nav ul li a {
+                padding: 10px 20px;
+                width: 100%;
+                text-align: center;
+                
+            }
+
+            nav.open {
+                display: block;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+      
+        .faq {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+        
+
+        .faq-item h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .faq-item h2:hover {
+            color: #1abc9c;
+            
+        }
+
+        .answer {
+            
+            display: none;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .answer.open {
+            display: block;
+            
+        }
+
+        .answer p {
+            margin: 0;
+        }
+
+       
+
+        /* Add subtle hover effect to each item */
+        .faq-item:hover {
+            background-color: #ecf0f1;
+            padding-left: 10px;
+            transition: padding-left 0.3s ease;
+            border-radius:10px;
+        }
+
+        .container{            
+            width:80%;
+            margin:auto;
+            margin-top:350px;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .faq-item h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+
+        
+    /* Footer Styles */
+    footer {
+        background-color: #1f1f1f;
+        color: #fff;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    footer p {
+        margin-bottom: 10px;
+    }
+
+    .social-icons {
+        margin-bottom: 20px;
+    }
+
+    .social-icons a {
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: #e31c25;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .contact-info a {
+        color: #e31c25;
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    .terms-links {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .terms-links a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .terms-links a:hover {
+        color: #e31c25;
+    }
+    </style>
+
+    <!--  Meta Tags -->
+    
+    <meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="author" content="Tony Moran">
+    <meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+    <!-- Title -->
+    <title>Tony Moran | Latin Rascals Official</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags (For social media previews) -->
+    <meta property="og:title" content="Tony Moran | Latin Rascals Official">
+    <meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta property="og:url" content="https://www.tonylatinrascal.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags (For Twitter preview) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+    <meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+    <!-- Additional Meta Tags for SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.tonylatinrascal.com">
+    
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="nav" >
+            <ul>
+                <li class="poner_margin_open_menu_mobile"><a href="{% url 'index'%}">HOME</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'biography'%}">BIOGRAPHY</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url  'product_list' %}">STORE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'schedule'%}">SCHEDULE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'contact'%}">CONTACT</a></li>
+                <li class="has-submenu"><a href="#">MORE</a>
+                    <ul class="submenu " >
+                        <li><a href="{% url 'discography'%}">DISCOGRAPHY</a></li>
+                        <li><a href="{%url 'music_section_list'%}">MUSIC</a></li>
+                        <li><a href="{%url 'videos_list'%}">VIDEOS</a></li>
+                        <li><a href="{%url 'gallery_list'%}">GALLERY</a></li>
+                
+                    </ul>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h1>Frequently Asked Questions (FAQ)</h1>
+
+        <ul class="faq">
+            <!-- FAQ 1 -->
+            <li class="faq-item">
+                <h2>What is Latin Rascals?</h2>
+                <div class="answer">
+                    <p>Latin Rascals is a musical duo known for their innovative fusion of Latin music with electronic sounds, creating an unforgettable dance experience. They are pioneers in blending Latin rhythms with modern production techniques.</p>
+                </div>
+            </li>
+            
+            <!-- FAQ 2 -->
+            <li class="faq-item">
+                <h2>Where are Latin Rascals from?</h2>
+                <div class="answer">
+                    <p>Latin Rascals are based in the United States but have strong Latin American roots. Their music draws from a wide range of Latin American cultures and influences, blending genres such as Salsa, Reggaeton, and electronic music.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 3 -->
+            <li class="faq-item">
+                <h2>How did Latin Rascals get started?</h2>
+                <div class="answer">
+                    <p>Latin Rascals formed in the early 1990s after they met at a music production workshop. Their shared passion for both Latin music and emerging electronic genres led them to collaborate on tracks that quickly gained a following.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 4 -->
+            <li class="faq-item">
+                <h2>How can I book Latin Rascals for an event?</h2>
+                <div class="answer">
+                    <p>You can reach out via their official website or social media profiles to inquire about booking and event availability. They perform at a wide range of events including festivals, clubs, and private parties.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 5 -->
+            <li class="faq-item">
+                <h2>Where can I listen to their music?</h2>
+                <div class="answer">
+                    <p>Latin Rascals' music is available on all major streaming platforms, including Spotify, Apple Music, and YouTube. Additionally, some exclusive releases can be found on their official website.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 6 -->
+            <li class="faq-item">
+                <h2>What genres do Latin Rascals incorporate in their music?</h2>
+                <div class="answer">
+                    <p>Latin Rascals blend a wide variety of genres, from traditional Latin rhythms such as Salsa, Bachata, and Merengue, to modern genres like Reggaeton, Trap, and EDM. Their sound is characterized by a fusion of vibrant Latin melodies and infectious electronic beats.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 7 -->
+            <li class="faq-item">
+                <h2>Do they offer merchandise?</h2>
+                <div class="answer">
+                    <p>Yes! Latin Rascals offer a range of merchandise, including t-shirts, hoodies, posters, and more. You can find their official merch store on their website or through their social media pages.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 8 -->
+            <li class="faq-item">
+                <h2>How can I connect with Latin Rascals on social media?</h2>
+                <div class="answer">
+                    <p>Latin Rascals are active on most major social media platforms, including Instagram, Facebook, and Twitter. You can follow them to stay updated on new music, tour dates, and behind-the-scenes content.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 9 -->
+            <li class="faq-item">
+                <h2>Are there any upcoming tours or live shows?</h2>
+                <div class="answer">
+                    <p>Yes! Latin Rascals are currently planning their next tour, which will include performances in major cities across North America and Latin America. Check their website or social media for the latest announcements regarding tour dates and venues.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 10 -->
+            <li class="faq-item">
+                <h2>What is the inspiration behind their latest album?</h2>
+                <div class="answer">
+                    <p>The latest album, titled "Ritmo del Corazón," is inspired by the duo's journey through different Latin cultures. It explores themes of love, celebration, and social unity, combining traditional sounds with modern electronic elements.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 11 -->
+            <li class="faq-item">
+                <h2>How can I support Latin Rascals?</h2>
+                <div class="answer">
+                    <p>Supporting Latin Rascals is easy! You can buy their music on platforms like iTunes, attend their shows, purchase merchandise, and share their content on social media to help spread the word about their music.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 12 -->
+            <li class="faq-item">
+                <h2>Do they collaborate with other artists?</h2>
+                <div class="answer">
+                    <p>Yes! Latin Rascals have collaborated with numerous artists across different genres, from Reggaeton stars to electronic DJs. They’re always looking for creative collaborations that blend different musical styles and cultures.</p>
+                </div>
+            </li>
+
+            <!-- FAQ 13 -->
+            <li class="faq-item">
+                <h2>What equipment do Latin Rascals use in their productions?</h2>
+                <div class="answer">
+                    <p>Latin Rascals use a variety of high-end equipment in their studio, including synthesizers, drum machines, and software like Ableton Live and FL Studio. They also use traditional instruments like the congas and trumpet in their recordings to give their music an authentic Latin feel.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer>
+    
+        <div class="social-icons">
+            <a href="https://www.facebook.com/TonyMoran" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a  href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/djtonymoran" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+        
+        
+        <div class="contact-info">
+            <p><strong>Contact Us:</strong></p>
+            <p>Phone: <a href="tel:+16462691617">+1 646-269-1617</a></p>
+            <p>Email: <a href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+            <p><a>tonymoranmusic@gmail.com</a></p>
+        </div>
+    
+        <div class="terms-links">
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+            <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.faq-item h2').forEach((item) => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                answer.classList.toggle('open');
+            });
+        });
+    </script>
+
+    <script>
+        // Toggle mobile navigation menu
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+    
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+    </script>
+
+</body>
+</html>

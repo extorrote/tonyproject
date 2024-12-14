@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Reset */
+        * {
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* ANIMACIONES */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(40px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+      }
+}
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            
+            background-color: #8B0000;
+            background: linear-gradient(45deg, #ff8c00, #e52e71);
+            background: linear-gradient(60deg, #24c6dc, #514a9d);
+            background: linear-gradient(120deg, #f8cdda, #1e82e1);
+            background: linear-gradient(45deg, #ff4e50, #f9d423);
+            background: linear-gradient(135deg, #e52e71, #ff8c00);
+            background: linear-gradient(180deg, #F22727, black);
+           
+            
+            
+            
+           
+            
+            
+        }
+        
+        /* Header */
+        header {
+            
+            background: url("{% static 'images/imagen_header.jpg' %}") no-repeat center center;
+            background-attachment:fixed;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-position: center;
+            padding: 20px 20px;
+            position: relative;
+            height: 70vh;
+            color: white;
+            text-align: center; /* Center text and logo */
+            animation:slideIn 1.5s .7s ease;
+        }
+
+     
+
+        header .logo img {
+            max-width: 350px;
+            height: auto;
+            display:block;
+        }
+
+        /* Navigation Container */
+        /* Navigation Container */
+nav {
+    position: absolute;  /* Position the nav at the bottom of the header */
+    bottom: 1px;        /* Adjust the distance from the bottom */
+    left: 50%;           /* Position the nav horizontally centered */
+    transform: translateX(-50%); /* Center the nav perfectly */
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    background-color: black; /* Default to transparent */
+    padding: 20px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-direction: column; /* Use column layout */
+    align-items: center; /* Center the nav items */
+    
+    
+}
+
+
+        nav.active {
+            background-color: rgba(0, 0, 0, 0.6); /* Background color when the menu is active */
+            width:80%;
+            
+        }
+        nav.active  .poner_margin_open_menu_mobile{
+            margin-top:15px;
+        }
+        nav.active .has-submenu{
+            background-color:  rgba(255, 0, 0, 0.644); /* Background color when the menu is active */
+            margin-top:20px;
+            
+        }
+        
+
+        /* Navigation Menu */
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap:0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .has-submenu{
+            text-wrap: nowrap;
+        }
+
+        nav ul li {
+            position: relative;
+            
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            z-index:1000;
+        }
+
+        nav ul li:hover {
+            background:#D92525;
+            border-radius:5px;
+            padding:10px 0;
+            
+        }
+
+       
+
+        /* Submenu Styling */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position submenu below the parent item */
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Same as the menu's background color */
+            width: 200%; /* Submenu takes the same width as the parent */
+            border-radius: 5px;
+            z-index: 2; /* Ensure submenu appears above other items */
+        }
+        
+        .submenu li {
+            padding: 5px;
+        }
+
+        .submenu li a {
+            color: white;
+        }
+
+
+      
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+        }
+
+        .hamburger div {
+            background-color: white;
+            height: 3px;
+            width: 100%;
+        }
+        
+        
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 892px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                display: none; /* Hide the menu by default */
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            .submenu{
+                width:100%;
+            }
+            nav.active ul {
+                display: flex !important; /* Force show the menu when active */
+            }
+
+            .hamburger {
+                display: flex; /* Show the hamburger icon */
+            }
+
+            /* Center the header content */
+            header {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+                padding: 10px;
+                background-attachment:scroll;
+                margin-bottom:-20px;
+            }
+            .body{
+                margin-top:0;
+            }
+
+            nav {
+                position: relative; /* Remove absolute positioning */
+                top: 0; /* Move nav below header */
+                margin-top: 20px; /* Space between header and nav */
+                background-color: transparent; /* Default to transparent */
+            }
+
+            nav.active {
+                background-color: rgba(0, 0, 0, 0.6); /* Change to the desired background when active */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header .logo img {
+                max-width: 150px;
+            }
+
+            
+        }
+
+        /* Show submenu on hover (for large screens) */
+        @media screen and (min-width: 769px) {
+            .has-submenu:hover .submenu {
+                display: block; /* Display the submenu when hovering over the parent menu item */
+            }
+        }
+
+    
+
+
+        
+
+</style>
+<link rel="stylesheet" href="{% static '/css/index.css' %}">
+<link rel="stylesheet" href="{% static '/css/fuentes.css' %}">
+
+
+
+
+    <!--  Meta Tags -->
+    
+    <meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="author" content="Tony Moran">
+    <meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+    <!-- Title -->
+    <title>Tony Moran | Latin Rascals Official</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags (For social media previews) -->
+    <meta property="og:title" content="Tony Moran | Latin Rascals Official">
+    <meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta property="og:url" content="https://www.tonylatinrascal.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags (For Twitter preview) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+    <meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+    <!-- Additional Meta Tags for SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.tonylatinrascal.com">
+
+
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="nav">
+    
+            <ul>               
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'biography'%}">BIOGRAPHY</a></li>
+                
+                <li class="poner_margin_open_menu_mobile"><a href="{% url 'product_list'  %}">STORE</a></li>
+                
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'schedule'%}">SCHEDULE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'contact'%}">CONTACT</a></li>
+
+                
+                <li class="has-submenu"><a href="#">MORE</a>
+                    <ul class="submenu">
+                        {% if user.username == 'tony'  or user.username == 'kiki'%}
+                        <li><a href="{% url 'create_post_index'%}">MAKE A POST</a></li>
+                        <li><a href="{% url 'upload_song'%}">POST A SONG</a></li>
+                        <li class="poner_margin_open_menu_mobile"><a href="{%url 'logout'%}">LOG OUT</a></li> 
+                        {%else%}
+                        <li class="poner_margin_open_menu_mobile"><a href="{%url 'login'%}">LOG IN</a></li>
+                        {%endif%}
+                    
+                        <li><a href="{% url 'discography'%}">DISCOGRAPHY</a></li>
+                        <li><a href="{%url 'music_section_list'%}">MUSIC</a></li>
+                        <li><a href="{%url 'videos_list'%}">VIDEOS</a></li>
+                        <li><a href="{%url 'gallery_list'%}">GALLERY</a></li>
+                        <li><a href="{%url 'faq'%}">FAQ's</a></li>
+                        
+                    </ul>
+                </li>  
+             
+            </ul>
+           
+        </nav>
+    </header>
+
+        
+  <div class="post_fijos">
+         <img class="image_post_fijos"src="{%static 'images/foto_blanco_negro.png'%}">
+        <h2 class="h2_post_fijos">THE 2 MOST LEGENDARY PRODUCERS, PIONEERS OF THE MUSIC EDITING ARTFORM AND FREESTYLE ARTISTS DUO OF ALL TIME </h2>
+        <p  class="p_post_fijos"> The Latin Rascals, consisting of Tony Moran and Johnny "Wild" Perez, are legendary producers and artists who played a pivotal role in the Latin freestyle and dance music scenes of the 1980s and 1990s. Known for their groundbreaking remixes and productions, they blended Latin rhythms with electronic dance beats, shaping the sound of the era. Their remixes of hits by artists like Lisa Lisa & Cult Jam and Stevie B helped bring Latin freestyle to the mainstream. The Latin Rascals’ innovative work left a lasting impact on both Latin pop and dance music, making them one of the most influential and iconic duos in music history. </p>
+  </div>
+
+  <div class="post_fijos2">
+    <img class="image_post_fijos2"src="{%static 'images/foto_album.jpeg'%}">
+   <h2 class="h2_post_fijos2">Tony Moran is Also the Creator of his next Colection of great artists craetaing a new Brand Titled Concept Of One </h2>
+   <p  class="p_post_fijos2"> Tony Moran is a renowned music producer, remixer, and artist known for his groundbreaking work in the Latin freestyle and dance music scenes. He is also the creative force behind the project Concept of One, where he collaborates with some of the most famous artists in the music industry. As a producer and remixer, Tony Moran has worked with a wide range of iconic artists, blending Latin, pop, and electronic dance music to create unforgettable hits. His collaborations have included working with major stars like Mariah Carey, P!nk, Shakira, and Jennifer Lopez. His ability to infuse mainstream pop with Latin influences has cemented his status as one of the most influential figures in contemporary music. Through Concept of One, Moran continues to push boundaries, producing innovative music that resonates across genres.</p>
+</div>
+
+
+<div class="post_fijos3">
+    <img class="image_post_fijos3"src="{%static 'images/header_background.png'%}">
+    <h2 class="h2_post_fijos3">latin rascals feat tony moran </h2>
+    <p  class="p_post_fijos3"> Latin Rascals feat. Tony Moran represents a powerhouse collaboration in the world of Latin and dance music. As one of the most influential producer duos, the Latin Rascals—comprised of Johnny "Wild" Perez and Tony Moran—blended Latin rhythms with electronic dance music to shape the sound of the 1980s and 1990s. Tony Moran’s contribution as a part of the Latin Rascals brought his unique production style and remixing talent to iconic tracks, helping to define the Latin freestyle genre. His collaborations with the duo led to numerous hits that fused Latin beats with pop and dance, earning them legendary status in the music industry. Together, they transformed the music scene with innovative sounds, influencing countless artists and shaping the future of Latin dance music. </p>
+</div>
+
+
+
+
+
+
+
+            {% if posts %} <!-- PONIENDO ESTA CONDICIONAL AQUI YA NO SE MUESTRA NI EL CONTAINER SI NO HAY POSTS-->
+                <div class="posts_index">
+                    {% for post in posts %}
+                        {% comment %} poner en la foto tony moran y Albert Cabrera {% endcomment %}
+                        {% if post.picture %}
+                            <img id="post_image2" src="{{ post.picture.url }}" alt="{{ post.title }}">
+                        {% else %}
+                            <h5 class="h5_index">The Post doesn't have a picture</h5>
+                        {% endif %}
+                        <h2 class="h2_index">{{ post.title }}</h2>
+                        <p class="p_index">{{ post.description }}</p>
+                        <div class="hr"></div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
+
+        <h1>Song List</h1>
+        <div class="song-list">
+            <!-- Minimize Button -->
+            <button id="minimizeBtn" class="minimize-btn">-</button>
+            
+            <!-- Now Playing Info (Shows when minimized) -->
+            <div id="nowPlaying" class="now-playing minimized" style="display: none;">
+                <span id="nowPlayingTitle" style="display: block; text-align: center;"></span> <!-- Title above image -->
+                <img id="nowPlayingImage" src="" alt="Current Song" style="display: none; margin-top: 10px;" />
+            </div>
+        
+            <!-- Playlist Container (Initially minimized) -->
+            <div id="playlist" class="playlist-container" style="display: none;">
+                {% for song in songs %}
+                    <div class="song-item">
+                        <!-- Display background image if it exists -->
+                        {% if song.background_image %}
+                            <img src="{{ song.background_image.url }}" alt="Background image for {{ song.name }}" style="width: 100%; max-width: 150px;">
+                            
+                        {% endif %}
+                        
+                        <h2>{{ song.name }}</h2>
+                        
+                        <!-- Audio player to play the song -->
+                        <audio class="audio-player" data-song-name="{{ song.name }}" data-song-image="{{ song.background_image.url }}" controls >
+                            <source src="{{ song.file.url }}" type="audio/mpeg" >
+                            Your browser does not support the audio element.
+                        </audio>
+                        
+                    </div>
+                <hr>
+                {% endfor %}
+                
+            </div>
+        
+            <!-- Playlist controls (right side) -->
+            <div class="playlist-controls">
+                <!-- Now Playing Info Above Controls -->
+                <div class="playing-info">
+                    <span id="playingTitle" style="display: block; text-align: center;"></span> <!-- Title above image -->
+                    <img id="playingImage" src="" alt="Current Song" style="display: none;" />
+                </div>
+        
+                <button id="prevBtn">Previous</button>
+                <button id="playPauseBtn">Play</button>
+                <button id="nextBtn">Next</button>
+                <input id="volumeControl" type="range" min="0" max="1" step="0.01" value="1">
+                <label for="volumeControl">Volume</label>
+            </div>
+        </div>
+        
+        <!-- Link to the external CSS and JS files -->
+        <link rel="stylesheet" href="/static/css/reproductor.css">
+        <script src="/static/js/reproductor.js"></script>
+<!-- FIN DE SONG PLAYER -->
+
+
+    <!-- Footer Section -->
+    <div class="footer-form-container">
+        <h4>Send us an Email</h4>
+        <form method="post" action="{% url 'send_email' %}">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Tu nombre" required>
+            <input type="email" name="email" placeholder="Tu correo electrónico" required>
+            <input type="text" name="phone" placeholder="Tu teléfono" required>
+            <textarea name="message" placeholder="Tu mensaje" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+<footer>
+    <!-- PARA QUE ESTOS SE VEAN DEBO COPIAR ESTO EN HEAD <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">-->
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+    
+    
+    <div class="contact-info">
+        <p><strong>Contact Us:</strong></p>
+        <p>Phone: <a style="color:red;" href="tel:+16462691617">+1 646-269-1617</a></p>
+        <p>Email: <a style="color:red;" href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+        <p> <a style="color:red;" href="mailto:tonymoranmusic@gmail.com">tonymoranmusic@gmail.com</a></p>
+    </div>
+
+    <div class="terms-links">
+        <a href="{% url 'about_us'%}">About Us</a>
+        <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+        <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+    </div>
+</footer>
+
+
+
+
+    <!-- JavaScript for Hamburger Menu and Submenu Toggle -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        const submenuItems = document.querySelectorAll('.has-submenu > a');
+        const menuLinks = document.querySelectorAll('nav a'); // Select all menu links (main and submenu)
+
+        // Toggle the main menu visibility
+        hamburger.addEventListener('click', function () {
+            nav.classList.toggle('active'); // Toggle 'active' class to show/hide the menu
+        });
+
+        // Close the menu if clicked outside
+        window.addEventListener('click', function (e) {
+            if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                nav.classList.remove('active'); // Close the menu if clicked outside
+            }
+        });
+
+        // Toggle submenu visibility when a menu item is clicked (only on mobile)
+        submenuItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default link action
+                const submenu = item.nextElementSibling;
+                submenu.classList.toggle('show'); // Toggle the submenu
+            });
+        });
+
+        // Close the menu when any menu item is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                nav.classList.remove('active'); // Close the menu when any link is clicked
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Moran Store</title>
+    <link rel="stylesheet" href="{% static 'css/store.css'%}">
+
+
+    <!-- ESTO ES PARA PASAR LAS FOTOS  -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- ESTO ES PARA PASAR LAS FOTOS TAMBIEN -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- ESTO ES PARA QUE SE VEAN LOS ICONOS DEL FOOTER-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+
+<!--  Meta Tags -->
+    
+<meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta name="author" content="Tony Moran">
+<meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+<!-- Title -->
+
+
+<!-- Favicon -->
+<link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+<!-- Open Graph Meta Tags (For social media previews) -->
+<meta property="og:title" content="Tony Moran | Latin Rascals Official">
+<meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+<meta property="og:url" content="https://www.tonylatinrascal.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card Meta Tags (For Twitter preview) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+<meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+<meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+<meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+<!-- Additional Meta Tags for SEO -->
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.tonylatinrascal.com">
+
+</head>
+<body>
+
+   
+        <header>
+        <!-- ESTE ES EL QUE MUESTRA LAS 3 RAYITAS EN MOBIL -->
+        <div class="menu-bar " onclick="toggleMenu()">
+            <div ></div>
+            <div></div>
+            <div></div>
+            
+        </div>
+
+        <!-- Navigation links for the product types -->
+        <div class="nav-links">
+            <a href="{% url 'product_list' %}">
+                <button> ALL PRODUCTS</button>
+            </a>
+            <a href="{% url 'product_list' product_type='clothing' %}">
+                <button> CLOTHIG</button>
+            </a>
+            <a href="{% url 'product_list' product_type='poster' %}">
+                <button> POSTERS</button>
+            </a>
+            <a href="{% url 'product_list' product_type='album' %}">
+                <button> ALBUMS</button>
+            </a>
+            <a href="{% url 'product_list' product_type='musicset' %}">
+                <button> MUSIC SETS</button>
+            </a>
+            <a href="{% url 'product_list' product_type='coffeemug' %}">
+                <button> COFFEE MOGS</button>
+            </a>
+            <a href="{% url 'view_cart' %}">
+                <button> CART</button>
+            </a>
+            <a href="{% url 'index' %}">
+                <button> HOME</button>
+            </a>
+            {% if user.username == 'tony'  or user.username == 'kiki'%}
+            <li class="has-submenu " id="ancho"><a href="#">POST OPTIONS</a>
+                <ul class="submenu">
+                    
+                    <li><a href="{% url 'create_clothing'%}">CREATE CLOTHING</a></li>
+                    <li><a href="{% url 'create_poster'%}">CREATE POSTER</a></li>
+                    <li><a href="{% url 'create_album'%}">CREATE ALBUM</a></li>
+                    <li><a href="{% url 'create_music_set'%}">CREATE MUSIC SET</a></li>
+                    <li><a href="{% url 'create_coffee_mug'%}">CREATE COFFEE MUG</a></li>
+                    
+                    {%endif%}
+                </ul>
+            </li>
+            
+        </div>
+    </header>
+    <div class="body">
+        <!-- Product Section -->
+        {% if not product_type %}
+            <h2>All Products</h2>
+        {% else %}
+            <h2>Showing {{ product_type|capfirst }} Products</h2>
+        {% endif %}
+    
+        <div class="product-grid">
+            {% for product in products %}
+                <div class="product">
+    
+                    {% if product.product_type == 'clothing' and product.image2.url and product.image3.url and product.image4.url and product.image5.url and product.image6.url and product.image7.url and product.image8.url %}
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="{{ product.image.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image.url }}')"></div>
+                                <div class="swiper-slide"><img src="{{ product.image2.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image2.url }}')"></div>
+                                <div class="swiper-slide"><img src="{{ product.image3.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image3.url }}')"></div>
+                                <div class="swiper-slide"><img src="{{ product.image4.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image4.url }}')"></div>
+                                <div class="swiper-slide"><img src="{{ product.image5.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image5.url }}')"></div>
+                                <div class="swiper-slide"><img src="{{ product.image6.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image6.url }}')"></div>
+                                <div class="swiper-slide"><img src="{{ product.image7.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image7.url }}')"></div>
+                                <div class="swiper-slide"><img src="{{ product.image8.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image8.url }}')"></div>
+                            </div>
+    
+                            <!-- Swiper navigation buttons -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    {% elif product.image.url %}
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}" onclick="openModal('{{ product.image.url }}')">
+                    {% endif %}
+    
+                    <h3>{{ product.title }}</h3>
+                    <details>
+                        {% if product.description %}
+                            <summary>Tap to See Description</summary>
+                            <p>{{ product.description }}</p>
+                        {% endif %}
+    
+                        {% if product.product_type == 'musicset' %}
+                            <p style="color:orangered">Song List:</p>
+                            <p>{{ product.songs }}</p>
+                            <p style="color:orangered">Set Duration: {{ product.duration }}</p>
+                        {% endif %}
+    
+                        {% if product.product_type == 'album' %}
+                            <p style="color:orangered">Song List:</p>
+                            <p>{{ product.songs }}</p>
+                        {% endif %}
+                    </details>
+    
+                    <p class="price">Price: ${{ product.price }}</p>
+    
+                    <!-- Displaying details based on the product type -->
+                    {% if product.product_type == 'clothing' %}
+                        <!-- Size and Color Selection Form -->
+                        <form   action="{% url 'add_to_cart' product_type=product.product_type product_id=product.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="size-color-selection">
+                                <div class="form-group">
+                                    <label for="size">Size:</label>
+                                    <select name="size" id="size">
+                                        <option value="S">Small</option>
+                                        <option value="M">Medium</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra Large</option>
+                                        <option value="XXL">XXL</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="color">Color:</label>
+                                    <select name="color" id="color">
+                                        <option value="Red">Red</option>
+                                        <option value="Blue">Blue</option>
+                                        <option value="Black">Black</option>
+                                        <option value="White">White</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                        </form>
+                    {% else %}
+                        <!-- For all other product types, just show the Add to Cart button -->
+                        <form action="{% url 'add_to_cart' product_type=product.product_type product_id=product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    {% endif %}
+    
+                    {% if product.product_type == 'poster' %}
+                        <p>Measures: {{ product.measures }}</p>
+                    {% elif product.product_type == 'album' %}
+                        <p>Artist: {{ product.artist }}</p>
+                        {% if product.preview_link %}
+                            <p><a href="{{ product.preview_link }}" target="_blank">Preview Album</a></p>
+                        {% endif %}
+                    {% elif product.product_type == 'music_set' %}
+                        <!-- Song list is already displayed inside the 'details' section above -->
+                    {% elif product.product_type == 'coffee_mug' %}
+                        <!-- Coffee Mug has no extra details other than title, description, and price -->
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+
+
+
+    <footer>
+    
+        <div class="social-icons">
+            <a href="https://www.facebook.com/TonyMoran" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a  href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/djtonymoran" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+        
+        
+        <div class="contact-info">
+            <p><strong>Contact Us:</strong></p>
+            <p>Phone: <a href="tel:+16462691617">+1 646-269-1617</a></p>
+            <p>Email: <a href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+            <p><a>tonymoranmusic@gmail.com</a></p>
+        </div>
+    
+        <div class="terms-links">
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+            <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+        </div>
+    </footer>
+    <!-- ESTO ES PARA EL OPEN MENU -->
+    <script>
+        // Toggle the mobile menu visibility
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('nav-active');
+        }
+    </script>
+
+    <script>
+        // Toggle mobile menu visibility
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('nav-active');
+        }
+
+        // Initialize Swiper for each container individually
+    document.querySelectorAll('.swiper-container').forEach((container) => {
+        new Swiper(container, {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000, 
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: container.querySelector('.swiper-button-next'),
+                prevEl: container.querySelector('.swiper-button-prev'),
+            },
+        });
+    });
+
+
+
+
+        // Modal functions for image preview
+        function openModal(imageSrc) {
+            var modal = document.getElementById("myModal");
+            var modalImage = document.getElementById("modalImage");
+            modal.style.display = "flex";
+            modalImage.src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("myModal")) {
+                closeModal();
+            }
+        }
+    </script>
+
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+   
+</body>
+</body>
+</html>

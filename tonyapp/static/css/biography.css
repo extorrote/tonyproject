@@ -1,0 +1,173 @@
+
+    /* General Reset */
+ 
+    .biography_container{
+        margin-top:400px;
+    }
+    /* Typography */
+    h1, h2, h3 {
+        color: #fff;
+        font-weight: bold;
+        
+    }
+
+    .tony-moran-title {
+        font-size: 2.5rem;
+        color: #e31c25;
+    }
+
+    .tony-moran-subtitle {
+        font-size: 1.25rem;
+        color: #777;
+        margin-top: 5px;
+        overflow:
+    }
+
+    .tony-moran-bio-detail {
+        margin-bottom: 20px;
+        font-size: 1.125rem;
+        color: #444;
+    }
+
+    .tony-moran-subheading {
+        font-size: 1.75rem;
+        margin-top: 30px;
+        border-bottom: 2px solid #e31c25;
+        padding-bottom: 5px;
+    }
+
+    /* Biography Section */
+    .tony-moran-biography {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 10%;
+    }
+
+    .tony-moran-image-container {
+        width: 40%;
+        padding: 20px;
+    }
+
+    .tony-moran-biography-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .tony-moran-bio-text {
+        width: 55%;
+        padding: 20px;
+    }
+
+    .tony-moran-bio-list {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin-bottom: 30px;
+    }
+
+    .tony-moran-bio-list li {
+        margin-bottom: 10px;
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: #1f1f1f;
+        color: #fff;
+        padding: 40px 0;
+        text-align: center;
+        
+    }
+
+    footer p {
+        margin-bottom: 10px;
+    }
+
+    .social-icons {
+        margin-bottom: 20px;
+    }
+
+    .social-icons a {
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: #e31c25;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .contact-info a {
+        color: #e31c25;
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    .terms-links {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .terms-links a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .terms-links a:hover {
+        color: #e31c25;
+    }
+
+    /* Mobile Responsiveness */
+    @media screen and (max-width: 768px) {
+        
+
+        .tony-moran-biography {
+            flex-direction: column;
+            margin: 20px 5%;
+        }
+
+        .tony-moran-image-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .tony-moran-bio-text {
+            width: 100%;
+        }
+
+    
+    }
+
+    /* Additional Styles for Hover Effects and Animations */
+    .tony-moran-bio-detail:hover {
+        background-color: #f9f9f9;
+        transition: background-color 0.3s ease;
+    }
+
+    .tony-moran-title {
+        font-family: 'Cinzel', serif; /* Using a serif font for a more elegant title style */
+        letter-spacing: 2px;
+    }
+
+    /* Add Shadow Effect on Elements */
+    .tony-moran-biography-image {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .tony-moran-biography-image:hover {
+        transform: scale(1.05);
+    }
+
+
+

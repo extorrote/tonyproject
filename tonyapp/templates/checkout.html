@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f7f7f7, #f0f4f8);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 950px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #34495e;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #555;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        /* Cart items container with grid layout */
+        .cart-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Default: 4 items per row */
+            gap: 15px; /* Space between items */
+            margin-bottom: 20px;
+        }
+
+        /* Cart item styling */
+        .cart-item {
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .cart-item h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .cart-item p {
+            font-size: 18px;
+            color: #8e44ad;
+            font-weight: bold;
+        }
+
+        /* Total price styling */
+        .total {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Form styling */
+        form {
+            margin-top: 30px;
+        }
+
+        form div {
+            margin-bottom: 20px;
+        }
+
+        /* Flexbox layout for two fields in a row */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Distribute space between fields */
+            gap: 20px; /* Space between fields */
+        }
+
+        .form-row label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .form-row div {
+            flex: 1; /* Allow fields to grow and fill space */
+            min-width: 250px; /* Ensure minimum width for each input */
+        }
+
+        .form-row input, .form-row textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            transition: border 0.3s ease;
+        }
+
+        .form-row input:focus, .form-row textarea:focus {
+            outline: none;
+            border: 1px solid #3498db;
+            background-color: #fff;
+        }
+
+        .errors {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .errors ul {
+            list-style-type: none;
+        }
+
+        .errors li {
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            font-size: 18px;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #7f8c8d;
+            cursor: not-allowed;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            .cart-item h3 {
+                font-size: 16px;
+            }
+
+            .cart-item p {
+                font-size: 16px;
+            }
+
+            .total {
+                font-size: 20px;
+            }
+
+            input, textarea {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            /* Adjust flex layout for mobile */
+            .form-row {
+                flex-direction: column;
+            }
+        }
+
+        .error-field {
+            border: 1px solid #e74c3c;
+            background-color: #f8d7da;
+        }
+    </style>
+
+    <!--  Meta Tags -->
+    
+    <meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="author" content="Tony Moran">
+    <meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+    <!-- Title -->
+    
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags (For social media previews) -->
+    <meta property="og:title" content="Tony Moran | Latin Rascals Official">
+    <meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta property="og:url" content="https://www.tonylatinrascal.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags (For Twitter preview) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+    <meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+    <!-- Additional Meta Tags for SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.tonylatinrascal.com">
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <a href="{% url 'view_cart' %}">
+            <button> BACK TO CART</button>
+        </a>
+        
+        <!-- Cart items container -->
+        <div class="cart-items">
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <h3>{{ item.get_product.title }} (x{{ item.quantity }})</h3>
+                    {% if item.quantity > 1 %}
+                        <p>Total Price for this item: ${{ item.total_price }}</p>
+                    {% else %}
+                        <p>Price: ${{ item.total_price }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <h3>Total: ${{ total_price }}</h3>
+
+        <!-- User Information Form -->
+        <form id="checkout-form" method="POST" action="{% url 'checkout' %}">
+            {% csrf_token %}
+            <h3>Enter Your Shipping Information</h3>
+
+            <!-- Form Row for First and Last Name -->
+            <div class="form-row">
+                <div>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value|default:'' }}" placeholder="Enter your first name" required>
+                </div>
+                <div>
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value|default:'' }}" placeholder="Enter your last name" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ form.email.value|default:'' }}" placeholder="Enter your email" required>
+                </div>
+                <div>
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" name="phone" value="{{ form.phone.value|default:'' }}" placeholder="Enter your phone number" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label for="address">Address:</label>
+                    <input id="address" name="address" placeholder="Enter your address" required>{{ form.address.value|default:'' }}</input>
+                </div>
+                <div>
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" value="{{ form.city.value|default:'' }}" placeholder="Enter your city" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state" value="{{ form.state.value|default:'' }}" placeholder="Enter your state" required>
+                </div>
+                <div>
+                    <label for="postal_code">Postal Code:</label>
+                    <input type="text" id="postal_code" name="postal_code" value="{{ form.postal_code.value|default:'' }}" placeholder="Enter your postal code" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" value="{{ form.country.value|default:'' }}" placeholder="Enter your country" required>
+                </div>
+                <div>
+                    <label for="any_extra_information">Any Extra Information:</label>
+                    <input type="text" id="any_extra_information" name="any_extra_information" value="{{ form.any_extra_information.value|default:'' }}" placeholder="Any extra information?" >
+                </div>
+            </div>
+
+            <!-- Display form errors -->
+            <div id="form-errors" class="errors" style="display: none;">
+                <ul id="error-list"></ul>
+            </div>
+
+            <button type="submit" id="checkout-button">PROCEED TO PAYMENT</button>
+        </form>
+
+        <script>
+            document.getElementById('checkout-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                var form = event.target;
+                var errors = [];
+                var errorList = document.getElementById('error-list');
+                var formErrors = document.getElementById('form-errors');
+                
+                // Clear previous errors
+                errorList.innerHTML = '';
+                formErrors.style.display = 'none';
+                
+                // Validation logic
+                var fields = form.querySelectorAll('input[required]');
+                fields.forEach(function(field) {
+                    if (!field.value) {
+                        errors.push(field.name + ' is required.');
+                        field.classList.add('error-field');
+                    } else {
+                        field.classList.remove('error-field');
+                    }
+                });
+
+                if (errors.length > 0) {
+                    formErrors.style.display = 'block';
+                    errors.forEach(function(error) {
+                        var li = document.createElement('li');
+                        li.textContent = error;
+                        errorList.appendChild(li);
+                    });
+                } else {
+                    // Submit the form if no errors
+                    form.submit();
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

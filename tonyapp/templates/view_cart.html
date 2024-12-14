@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Body styles */
+        body {
+            background-color: #f4f7fc;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* ANIMACIONES */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(40px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+      }
+}
+
+        
+        /* Header */
+        header {
+            
+            background: url("{% static 'images/imagen_header.jpg' %}") no-repeat center center;
+            background-attachment:fixed;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-position: center;
+            padding: 20px 20px;
+            position: relative;
+            height: 70vh;
+            color: white;
+            text-align: center; /* Center text and logo */
+            animation:slideIn 1.5s .7s ease;
+        }
+
+     
+
+        header .logo img {
+            max-width: 350px;
+            height: auto;
+            display:block;
+        }
+
+        /* Navigation Container */
+        /* Navigation Container */
+nav {
+    position: absolute;  /* Position the nav at the bottom of the header */
+    bottom: 1px;        /* Adjust the distance from the bottom */
+    left: 50%;           /* Position the nav horizontally centered */
+    transform: translateX(-50%); /* Center the nav perfectly */
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    background-color: black; /* Default to transparent */
+    padding: 20px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-direction: column; /* Use column layout */
+    align-items: center; /* Center the nav items */
+    
+}
+
+
+        nav.active {
+            background-color: rgba(0, 0, 0, 0.6); /* Background color when the menu is active */
+            width:80%;
+            
+        }
+        nav.active  .poner_margin_open_menu_mobile{
+            margin-top:15px;
+        }
+        nav.active .has-submenu{
+            background-color:  rgba(255, 0, 0, 0.644); /* Background color when the menu is active */
+            margin-top:20px;
+            
+        }
+        
+
+        /* Navigation Menu */
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap:0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .has-submenu{
+            text-wrap: nowrap;
+        }
+
+        nav ul li {
+            position: relative;
+            
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            z-index:1000;
+        }
+
+        nav ul li:hover {
+            background:#D92525;
+            border-radius:5px;
+            padding:10px 0;
+            
+        }
+
+       
+
+        /* Submenu Styling */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position submenu below the parent item */
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Same as the menu's background color */
+            width: 200%; /* Submenu takes the same width as the parent */
+            border-radius: 5px;
+            z-index: 2; /* Ensure submenu appears above other items */
+        }
+        
+        .submenu li {
+            padding: 10px;
+        }
+
+        .submenu li a {
+            color: white;
+        }
+
+
+      
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+        }
+
+        .hamburger div {
+            background-color: white;
+            height: 3px;
+            width: 100%;
+        }
+        
+        
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 892px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                display: none; /* Hide the menu by default */
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            .submenu{
+                width:100%;
+            }
+            nav.active ul {
+                display: flex !important; /* Force show the menu when active */
+            }
+
+            .hamburger {
+                display: flex; /* Show the hamburger icon */
+            }
+
+            /* Center the header content */
+            header {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+                padding: 10px;
+                background-attachment:scroll;
+                margin-bottom:-20px;
+            }
+            .body{
+                margin-top:0;
+            }
+
+            nav {
+                position: relative; /* Remove absolute positioning */
+                top: 0; /* Move nav below header */
+                margin-top: 20px; /* Space between header and nav */
+                background-color: transparent; /* Default to transparent */
+            }
+
+            nav.active {
+                background-color: rgba(0, 0, 0, 0.6); /* Change to the desired background when active */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header .logo img {
+                max-width: 150px;
+            }
+
+            
+        }
+
+        /* Show submenu on hover (for large screens) */
+        @media screen and (min-width: 769px) {
+            .has-submenu:hover .submenu {
+                display: block; /* Display the submenu when hovering over the parent menu item */
+            }
+        }
+
+        
+
+
+
+        
+    </style>
+    <link rel="stylesheet" href="{% static 'css/view_cart.css'%}">
+
+
+    <!--  Meta Tags -->
+    
+    <meta name="description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="author" content="Tony Moran">
+    <meta name="keywords" content="Tony Moran, Latin Rascals, music, DJ, producer, official website">
+
+    <!-- Title -->
+    <title>Your Cart items </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/images/fabicon.ico' %}" type="image/x-icon">
+
+    <!-- Open Graph Meta Tags (For social media previews) -->
+    <meta property="og:title" content="Tony Moran | Latin Rascals Official">
+    <meta property="og:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta property="og:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta property="og:url" content="https://www.tonylatinrascal.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags (For Twitter preview) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Moran | Latin Rascals Official">
+    <meta name="twitter:description" content="Tony Moran | Latin Rascals - Official website for music, news, and more.">
+    <meta name="twitter:image" content="{% static '/images/imagen_header.jpg' %}">
+    <meta name="twitter:url" content="https://www.tonylatinrascal.com">
+
+    <!-- Additional Meta Tags for SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.tonylatinrascal.com">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="{% url 'index' %}"> <img src="{% static 'images/logo_latin_rascals.png' %}" alt="Tony Moran & The Latin Rascals Logo"></a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li class="poner_margin_open_menu_mobile"><a href="{% url 'index'%}">HOME</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'biography'%}">BIOGRAPHY</a></li>
+                
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'schedule'%}">SCHEDULE</a></li>
+                <li class="poner_margin_open_menu_mobile"><a href="{%url 'contact'%}">CONTACT</a></li>
+                <li class="has-submenu"><a href="#">MORE</a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'discography'%}">Discography</a></li>
+                        <li><a href="{%url 'music_section_list'%}">Music</a></li>
+                        <li><a href="{%url 'videos_list'%}">Videos</a></li>
+                        <li><a href="{%url 'gallery_list'%}">Gallery</a></li>
+                        <li><a href="{%url 'faq'%}">FAQ's</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="body">
+        <a href="{% url 'product_list' %}" class="go-back-btn"> < BACK TO STORE</a>
+        {% if cart_items %}
+            <h1>If you update the quantity, please make sure to click the "Update" button to apply the change. Also, when selecting a size and color for each clothing item, don't forget to press "Update" to save your selection.</h1>
+            <div class="cart-items-container">
+                {% for item in cart_items %}
+                    <div class="cart-item">
+                        <img src="{{ item.get_product.image.url }}" alt="{{ item.get_product.title }}">
+                        <div class="item-details"> 
+                            <h3>{{ item.get_product.title }}(x{{ item.quantity }})</h3>
+                            <p class="item-price">Total this item(s): ${{ item.total_price }}</p>
+                        </div>
+    
+                        <!-- Quantity Update Form -->
+                        <div class="form-group quantity">
+                            <form action="{% url 'update_cart_item' item.id %}" method="POST">
+                                {% csrf_token %}
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                                <button type="submit">UPDATE QUANTITY</button>
+                            </form>
+                        </div>
+    
+                        <!-- Size and Color Update (only for clothing items) -->
+                        {% if item.product_type == 'clothing' %}
+                            <form action="{% url 'update_cart_item' item.id %}" method="POST">
+                                {% csrf_token %}
+                                <h4 class="h4">Select Size and Color:</h4>
+                                <div class="size_color_box">
+                                    <div class="form-group">
+                                        <label for="size">Size:</label>
+                                        <select name="size" id="size">
+                                            <option value="S" {% if item.size == 'S' %}selected{% endif %}>Small</option>
+                                            <option value="M" {% if item.size == 'M' %}selected{% endif %}>Medium</option>
+                                            <option value="L" {% if item.size == 'L' %}selected{% endif %}>Large</option>
+                                            <option value="XL" {% if item.size == 'XL' %}selected{% endif %}>Extra Large</option>
+                                            <option value="XXL" {% if item.size == 'XXL' %}selected{% endif %}>XXL</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="color">Color:</label>
+                                        <select name="color" id="color">
+                                            <option value="Red" {% if item.color == 'Red' %}selected{% endif %}>Red</option>
+                                            <option value="Blue" {% if item.color == 'Blue' %}selected{% endif %}>Blue</option>
+                                            <option value="Black" {% if item.color == 'Black' %}selected{% endif %}>Black</option>
+                                            <option value="White" {% if item.color == 'White' %}selected{% endif %}>White</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit">UPDATE SIZE AND COLOR</button>
+                            </form>
+                        {% endif %}
+    
+                        <!-- Music Set and Coffee Mug: No Size/Color Update Form -->
+                        {% if item.product_type == 'music_set' or item.product_type == 'coffee_mug' %}
+                            <p>Item Type: {{ item.product_type|title }}</p>
+                        {% endif %}
+    
+                        <!-- Remove Item Form -->
+                        <form action="{% url 'remove_from_cart' item.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="remove-btn">Remove item</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+    
+            <!-- Checkout Section -->
+            <div class="checkout-section">
+                <h2>Total All items: ${{ cart.total_price }}</h2>
+                <form action="{% url 'checkout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="checkout-button">Proceed to Checkout</button>
+                </form>
+            </div>
+        {% else %}
+            <p>Your cart is empty. Add some items to your cart before proceeding to checkout.</p>
+        {% endif %}
+    </div>
+    
+
+
+    <footer>
+        <!-- PARA QUE ESTOS SE VEAN DEBO COPIAR ESTO EN HEAD <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">-->
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com/TonyMoran" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a  href="https://www.youtube.com/@TonyMoranMusic" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/djtonymoran" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved | www.tonylatinrascal.com</p>
+        
+        
+        <div class="contact-info">
+            <p><strong>Contact Us:</strong></p>
+            <p>Phone: <a href="tel:+16462691617">+1 646-269-1617</a></p>
+            <p>Email: <a href="mailto:dancemusicprod1@aol.com">dancemusicprod1@aol.com</a></p>
+            <p><a>tonymoranmusic@gmail.com</a></p>
+        </div>
+    
+        <div class="terms-links">
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{%url 'privacy_policy'%}">Privacy Policy</a>
+            <a href="{% url 'terms_and_conditions'%}">Terms of Conditions</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Hamburger Menu and Submenu Toggle -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        const submenuItems = document.querySelectorAll('.has-submenu > a');
+        const menuLinks = document.querySelectorAll('nav a'); // Select all menu links (main and submenu)
+
+        // Toggle the main menu visibility
+        hamburger.addEventListener('click', function () {
+            nav.classList.toggle('active'); // Toggle 'active' class to show/hide the menu
+        });
+
+        // Close the menu if clicked outside
+        window.addEventListener('click', function (e) {
+            if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                nav.classList.remove('active'); // Close the menu if clicked outside
+            }
+        });
+
+        // Toggle submenu visibility when a menu item is clicked (only on mobile)
+        submenuItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default link action
+                const submenu = item.nextElementSibling;
+                submenu.classList.toggle('show'); // Toggle the submenu
+            });
+        });
+
+        // Close the menu when any menu item is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                nav.classList.remove('active'); // Close the menu when any link is clicked
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<h1>Enter Your Information</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Proceed to Checkout</button>
+</form>

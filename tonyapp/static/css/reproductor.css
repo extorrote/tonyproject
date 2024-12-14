@@ -1,0 +1,238 @@
+        /* Center the H1 */
+        h1 {
+            margin-top:20px;
+            text-align: center;  /* Centers the title */
+            margin-bottom: 20px; /* Adds some space below the title */
+            color:white;
+            
+        }
+        
+        /* Center the song-list and the content inside it */
+        .song-list {
+            display: flex;
+            flex-direction: column;  /* Stack content vertically */
+            margin: auto;
+            width: 90%;
+            max-width: 900px;
+            background-image:linear-gradient(#fff 80%, #be90e4);
+            padding: 10px;  /* Reduced padding */
+            border-radius: 12px;
+            box-shadow: 0 0 14px BLACK;
+            position: relative; /* Make sure the minimize button is positioned correctly */
+            text-align: center; /* Ensures the content inside .song-list is centered */
+            margin-bottom: 20px;
+            margin-top:20px;
+            
+        }
+        
+        .playlist-container {
+            max-height: 250px;
+            overflow: scroll;
+        }
+        
+        /* Ensure the minimize button stays in the top right corner */
+        .minimize-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #37AFE1;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+            z-index: 1; /* Make sure it stays on top */
+        }
+        
+        .minimize-btn:hover {
+            background-color: rgb(5, 56, 134);
+        }
+        
+        /* Song Item Layout: Image on the left, Title above */
+        .song-item {
+            display: flex;
+            flex-direction: row;  /* Image on the left, title on the right */
+            align-items: center;  /* Align items horizontally */
+            gap: 3px;  /* 50% less space between image and title */
+            margin-bottom: 3px;  /* 50% less margin between items */
+        }
+        
+        /* Smaller image size and position to the left */
+        .song-item img {
+            width: 30px;  /* Reduced image size */
+            height: 30px;  /* Reduced image size */
+            object-fit: cover;
+            border-radius: 8px;  /* Rounded corners */
+        }
+        
+        /* Title above the image */
+        .song-item h2 {
+            font-size: 12px;  /* Smaller font size to fit tightly */
+            text-align: center;  /* Center the title text */
+            margin-bottom: 0;  /* Remove space below title */
+            flex: 1;  /* Allow title to take remaining space */
+        }
+        
+        /* Place the controls below the songs list */
+        .playlist-controls {
+            display: flex;
+            gap: 10px;  /* Reduced gap between controls */
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px; /* Reduced space between song list and controls */
+            flex-direction: row; /* Keep the controls in one row */
+        }
+        
+        /* Controls responsive adjustment */
+        .playlist-controls button {
+            padding: 10px 20px;
+            background-color: #37AFE1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .playlist-controls button:hover {
+            background-color: rgb(5, 56, 134);
+        }
+        
+        /* Volume slider styles */
+        .playlist-controls input[type="range"] {
+            width: 120px;
+            height: 6px;
+            background: #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .playlist-controls input[type="range"]::-webkit-slider-runnable-track {
+            background: #37AFE1;
+            height: 6px;
+            border-radius: 10px;
+        }
+        
+        .playlist-controls input[type="range"]::-webkit-slider-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgb(76, 135, 223);
+            border: none;
+            cursor: pointer;
+        }
+        hr{
+            display:none;
+        }
+        
+        /* Responsive Design for Small Screens */
+        @media (max-width: 768px) {
+            .song-list {
+                width: 95%; /* Use more of the available space */
+                padding: 15px; /* Slightly more padding on smaller screens */
+                
+            }
+        
+            .song-item {
+                flex-direction: column; /* Stack image and title vertically */
+                text-align: center; /* Center title on smaller screens */
+                
+                margin:5px auto;
+            }
+
+
+            .audio-player{
+                width:88%;
+                border-radius: 4px;
+            }
+            hr{
+                width:200px;
+                height:1px;
+                display:flex;
+                margin:auto;
+                color:gray;
+            }
+        
+            .song-item img {
+                width: 50px; /* Increase image size on small screens */
+                height: 50px;
+                
+            }
+        
+            .song-item h2 {
+                font-size: 14px; /* Increase title size on smaller screens */
+            }
+        
+            /* Keep controls in a row on small screens */
+            .playlist-controls {
+                flex-direction: row; /* Ensure controls are aligned in one row */
+                gap: 10px; /* Small gap between buttons */
+                justify-content: center; /* Center the controls */
+                flex-wrap: wrap; /* Allow wrapping */
+            }
+        
+            /* Button styling */
+            .playlist-controls button {
+                padding: 8px 12px; /* Smaller buttons on mobile */
+                font-size: 14px; /* Adjust font size for mobile */
+            }
+        
+            /* Volume slider: move it to the next line */
+            .playlist-controls input[type="range"] {
+                width: 100%; /* Make the volume slider full width on smaller screens */
+                margin-top: 10px; /* Add some margin to separate it from buttons */
+            }
+        }
+        
+        /* Further Adjustments for Extra Small Screens (Mobile Devices) */
+        @media (max-width: 480px) {
+            .song-list {
+                padding: 10px; /* Ensure no overflow on very small screens */
+            }
+        
+            .song-item img {
+                width: 40px; /* Slightly larger image for readability */
+                height: 40px;
+            }
+        
+            .song-item h2 {
+                font-size: 16px; /* Slightly larger title on very small screens */
+            }
+        
+            .minimize-btn {
+                padding: 10px; /* Adjust minimize button for small screens */
+                font-size: 18px; /* Smaller minimize button font */
+            }
+        
+            .playlist-controls {
+                gap: 8px; /* Adjust gap to prevent overcrowding */
+            }
+        }
+        
+        /* For larger screens (tablets and above) */
+        @media (min-width: 1024px) {
+            .song-list {
+                width: 80%; /* Allow song list to take more width on larger screens */
+                
+            }
+        
+            .song-item img {
+                width: 40px; /* Larger images for better visibility on large screens */
+                height: 40px;
+            }
+        
+            .song-item h2 {
+                font-size: 16px; /* Larger font size on larger screens */
+            }
+        
+            .playlist-controls {
+                flex-direction: row; /* Keep controls in a row on larger screens */
+            }
+        
+            .playlist-controls button {
+                padding: 12px 24px; /* Larger button padding */
+            }
+        }
